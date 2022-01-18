@@ -8,12 +8,12 @@ export class HeaderInterceptor implements HttpInterceptor {
     /**
      * add Bearer token to Http Header
      *
-     * @param req HttpRequest
+     * @param request HttpRequest
      * @param token string
      * @private
      */
-    private static addToken(req: HttpRequest<any>, token: string): HttpRequest<any> {
-        return req.clone({
+    private static addToken(request: HttpRequest<any>, token: string): HttpRequest<any> {
+        return request.clone({
             setHeaders: { Authorization: `Bearer ` + token },
             // todo add officialAccountId params
             // params: req.params.set('officialAccountId', 'officialAccountId')
@@ -23,11 +23,11 @@ export class HeaderInterceptor implements HttpInterceptor {
     /**
      * Identifies and handles a given HTTP request.
      *
-     * @param req HttpRequest
+     * @param request HttpRequest
      * @param next HttpHandler
      */
-    public intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    public intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         // 这里加入token值
-        return next.handle(HeaderInterceptor.addToken(req, localStorage.getItem('token')));
+        return next.handle(HeaderInterceptor.addToken(request, localStorage.getItem('token')));
     }
 }
