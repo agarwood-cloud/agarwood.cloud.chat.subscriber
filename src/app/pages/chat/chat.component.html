@@ -1,8 +1,8 @@
-<d-splitter class="chat-splitter-border">
+<d-splitter class="chat-splitter-border" [style.height.px]="sidebarHeight" >
   <!--left sidebar -->
   <d-splitter-pane size="25%" minSize="20%">
     <div class="chat-sidebar-pane-content">
-      <app-chat-sidebar></app-chat-sidebar>
+      <app-chat-sidebar [sidebarHeight]="sidebarHeight"></app-chat-sidebar>
     </div>
   </d-splitter-pane>
   <!--content -->

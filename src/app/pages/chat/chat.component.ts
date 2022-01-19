@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
 import { ChatSocketService } from './services/chat-socket.service';
 
 @Component({
@@ -14,10 +14,23 @@ export class ChatComponent implements OnInit {
   private readonly socket: ChatSocketService;
 
   /**
+   * set sidebar height
+   */
+  public sidebarHeight: number = 500;
+
+  /**
+   * Get chatSidebarHeader DOM element
+   */
+  @ViewChild('chatSidebarHeader')
+  public sidebarDomHeader: ElementRef;
+
+  /**
    * get socket.io client instance
    */
   public constructor (socket: ChatSocketService) {
     this.socket = socket;
+
+    this.getScreenSize();
   }
 
   /**
@@ -28,6 +41,16 @@ export class ChatComponent implements OnInit {
    * It is invoked only once when the directive is instantiated.
    */
   public ngOnInit (): void {
-    console.log('ChatComponent-ngOnInit');
+    console.log('ChatComponent-ngOnInit', this.sidebarHeight);
+  }
+
+  /**
+   * Listen for the window:resize event
+   *
+   * @param event
+   */
+  @HostListener('window:resize', ['$event'])
+  public getScreenSize (event?): void {
+    this.sidebarHeight = window.innerHeight;
   }
 }
