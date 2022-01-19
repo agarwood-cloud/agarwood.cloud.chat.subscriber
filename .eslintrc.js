@@ -15,5 +15,19 @@ module.exports = {
     '@typescript-eslint'
   ],
   rules: {
+    quotes: [
+      'error',
+      'single'
+    ],
+    "no-duplicate-imports": [
+      "error",
+      {
+        "includeExports": true
+      }
+    ],
+    semi: [
+      'error',
+      'always'
+    ],
   }
 }

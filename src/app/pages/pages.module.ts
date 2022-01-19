@@ -5,7 +5,6 @@ import { PagesRoutingModule } from './pages-routing.module';
 import { PagesComponent } from './pages.component';
 import { ChatModule } from './chat/chat.module';
 
-
 @NgModule({
   declarations: [
     PagesComponent

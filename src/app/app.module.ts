@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 // DevUI部分组件依赖angular动画，需要引入animations模块
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DevUIModule } from 'ng-devui';
-import { SharedModule} from './@shared/shared.module';
+import { SharedModule } from './@shared/shared.module';
 import { HeaderInterceptor } from './@core/services/header-Interceptor.service';
 
 import { AppRoutingModule } from './app-routing.module';

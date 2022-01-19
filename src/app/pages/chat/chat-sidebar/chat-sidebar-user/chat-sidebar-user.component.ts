@@ -9,7 +9,6 @@ import { User } from '../../services/user';
   styleUrls: ['./chat-sidebar-user.component.scss']
 })
 export class ChatSidebarUserComponent implements OnInit {
-
   @Input()
   public user: User;
 
@@ -24,11 +23,12 @@ export class ChatSidebarUserComponent implements OnInit {
   /**
    * Set limit time for three month later
    */
-  public constructor() {
+  public constructor () {
+    console.log('no-useless-constructor')
   }
 
-  public ngOnInit() {
+  public ngOnInit () {
+    // Set limit time for three month later
     this.limit = dayjs().add(3, 'month').unix();
   }
-
 }

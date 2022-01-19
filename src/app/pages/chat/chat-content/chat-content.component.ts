@@ -9,7 +9,6 @@ import { ChatSocketService } from '../services/chat-socket.service';
   styleUrls: ['./chat-content.component.scss']
 })
 export class ChatContentComponent implements OnInit {
-
   /**
    * @private
    */
@@ -31,23 +30,23 @@ export class ChatContentComponent implements OnInit {
    * @param chatSocket ChatSocketService
    * @param toast ToastService
    */
-  public constructor(chatSocket: ChatSocketService, toast: ToastService) {
+  public constructor (chatSocket: ChatSocketService, toast: ToastService) {
     this.chatSocket = chatSocket;
     this.toast = toast;
   }
 
-  public ngOnInit(): void {
+  public ngOnInit (): void {
     console.log('ChatContentComponent');
   }
 
   /**
    * send text message to user
    */
-  public sendMessage(): void {
+  public sendMessage (): void {
     // 如果空值，不能发送
     if (!this.messageContent) {
       this.toast.open({
-        value: [{ severity: 'info', content: 'Please Enter!' }],
+        value: [{ severity: 'info', content: 'Please Enter!' }]
       });
       return;
     }
@@ -63,7 +62,7 @@ export class ChatContentComponent implements OnInit {
   /**
    * send image message by paste event
    */
-  public sendClipboardImage(event): void {
+  public sendClipboardImage (event): void {
     // Is the clipboardData feature supported
     if (!(event.clipboardData && event.clipboardData.items)) {
       return;
@@ -105,7 +104,7 @@ export class ChatContentComponent implements OnInit {
    *
    * @param event
    */
-  public keyUp(event) {
+  public keyUp (event) {
     if (event.keyCode === 13) {
       this.sendMessage();
     }
@@ -116,10 +115,9 @@ export class ChatContentComponent implements OnInit {
    *
    * @param event
    */
-  public keyDown(event) {
+  public keyDown (event) {
     if (event.keyCode === 13) {
       event.preventDefault();
     }
   }
-
 }

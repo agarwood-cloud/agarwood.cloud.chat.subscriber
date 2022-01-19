@@ -8,7 +8,6 @@ import { ChatSocketService } from './services/chat-socket.service';
   styleUrls: ['./chat.component.scss']
 })
 export class ChatComponent implements OnInit {
-
   /**
    * @private
    */
@@ -17,7 +16,7 @@ export class ChatComponent implements OnInit {
   /**
    * get socket.io client instance
    */
-  public constructor(socket: ChatSocketService) {
+  public constructor (socket: ChatSocketService) {
     this.socket = socket;
   }
 
@@ -28,9 +27,7 @@ export class ChatComponent implements OnInit {
    * and before any of the view or content children have been checked.
    * It is invoked only once when the directive is instantiated.
    */
-  public ngOnInit(): void {
-
+  public ngOnInit (): void {
     console.log('ChatComponent-ngOnInit');
   }
-
 }

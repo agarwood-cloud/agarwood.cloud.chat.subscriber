@@ -8,7 +8,7 @@ const routes: Routes = [
     component: ChatComponent,
     children: [
       // { path: '', redirectTo: 'modal', pathMatch: 'full' },
-    ],
+    ]
   }
 ];
 

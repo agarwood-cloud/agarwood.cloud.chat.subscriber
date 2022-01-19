@@ -7,8 +7,7 @@ import { Websocket } from '../../../../config/websocket';
 import { ImageMessage, NewsItemMessage, TextMessage, VideoMessage, VoiceMessage } from './message';
 
 @Injectable()
-export class ChatSocketService  {
-
+export class ChatSocketService {
   /**
    * socket.io client
    */
@@ -20,7 +19,7 @@ export class ChatSocketService  {
   private readonly http: HttpClient;
 
   // init socket.io
-  public constructor(http: HttpClient) {
+  public constructor (http: HttpClient) {
     this.http = http;
 
     // login
@@ -50,7 +49,7 @@ export class ChatSocketService  {
    * @param toUserName
    * @param content
    */
-  public sendTextMessage(toUserName: string, content: string): void {
+  public sendTextMessage (toUserName: string, content: string): void {
     const message: TextMessage = {
       officialAccountId: ChatSocketService.getOfficialAccountId(),
       toUserName: toUserName,
@@ -60,7 +59,7 @@ export class ChatSocketService  {
       createdAt: dayjs().format('YYYY-MM-DD HH:mm:ss').toString(),
       msgType: 'text.message',
       content: content,
-      sender:  'customer',
+      sender: 'customer'
     };
     this.socket.emit('wechat.message', message);
   }
@@ -71,7 +70,7 @@ export class ChatSocketService  {
    * @param mediaId
    * @param imageUrl
    */
-  public sendImageMessage(mediaId: string, imageUrl: string): void {
+  public sendImageMessage (mediaId: string, imageUrl: string): void {
     const message: ImageMessage = {
       officialAccountId: ChatSocketService.getOfficialAccountId(),
       toUserName: '',
@@ -82,7 +81,7 @@ export class ChatSocketService  {
       msgType: 'image.message',
       imageUrl: imageUrl,
       mediaId: mediaId,
-      sender:  'customer',
+      sender: 'customer'
     };
 
     // emit event
@@ -99,7 +98,7 @@ export class ChatSocketService  {
    * @param thumbMediaId
    * @param description
    */
-  public sendVideoMessage(
+  public sendVideoMessage (
     toUserName: string,
     videoUrl: string,
     mediaId: string,
@@ -120,7 +119,7 @@ export class ChatSocketService  {
       thumbMediaId: thumbMediaId,
       title: title,
       toUserName: toUserName,
-      videoUrl: videoUrl,
+      videoUrl: videoUrl
     };
 
     this.socket.emit('wechat.message', message);
@@ -134,7 +133,7 @@ export class ChatSocketService  {
    * @param title
    * @param description
    */
-  public sendNewsItemMessage(toUserName: string, imageUrl: string, title: string, description: string): void {
+  public sendNewsItemMessage (toUserName: string, imageUrl: string, title: string, description: string): void {
     const message: NewsItemMessage = {
       createdAt: dayjs().format('YYYY-MM-DD HH:mm:ss').toString(),
       description: description,
@@ -146,7 +145,7 @@ export class ChatSocketService  {
       officialAccountId: ChatSocketService.getOfficialAccountId(),
       sender: 'customer',
       title: title,
-      toUserName: toUserName,
+      toUserName: toUserName
     };
 
     this.socket.emit('wechat.message', message);
@@ -159,7 +158,7 @@ export class ChatSocketService  {
    * @param voiceUrl
    * @param mediaId
    */
-  public sendVoiceMessage(toUserName: string, voiceUrl: string, mediaId: string): void {
+  public sendVoiceMessage (toUserName: string, voiceUrl: string, mediaId: string): void {
     const message: VoiceMessage = {
       createdAt: dayjs().format('YYYY-MM-DD HH:mm:ss').toString(),
       fromUserId: JSON.parse(
@@ -181,8 +180,7 @@ export class ChatSocketService  {
    *
    * @param image FormData
    */
-  public uploadImage(image: FormData): Observable<any> {
+  public uploadImage (image: FormData): Observable<any> {
     return this.http.post('user-center/official-account/v3/chat/upload-image', image);
   }
-
 }

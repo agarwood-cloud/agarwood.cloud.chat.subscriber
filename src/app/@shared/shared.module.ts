@@ -22,7 +22,7 @@ import {
   TooltipModule,
   RadioModule,
   BreadcrumbModule,
-  ModalModule,
+  ModalModule
 } from 'ng-devui';
 import { I18nModule } from 'ng-devui/i18n';
 
@@ -70,7 +70,7 @@ const COMPONENTS = [
   ]
 })
 export class SharedModule {
-  static forRoot(): ModuleWithProviders<SharedModule> {
+  static forRoot (): ModuleWithProviders<SharedModule> {
     return {
       ngModule: SharedModule,
       providers: []

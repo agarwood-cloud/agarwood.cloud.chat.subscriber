@@ -10,7 +10,7 @@ export class ChatSidebarAccordionComponent implements OnInit {
    * user
    */
   public user;
-  public constructor() {
+  public constructor () {
     this.user = {
       id: 1111,
       officialAccountId: 2222,
@@ -23,9 +23,10 @@ export class ChatSidebarAccordionComponent implements OnInit {
       unsubscribeAt: 'string',
       subscribe: 'subscribe',
       subscribeScene: 'ADD_SCENE_SEARCH',
-      createdAt: '2022-01-14 00:00:00',
+      createdAt: '2022-01-14 00:00:00'
     };
   }
+
   menu = [{
     title: 'Content 1',
     children: [],
@@ -36,20 +37,19 @@ export class ChatSidebarAccordionComponent implements OnInit {
     content: 'Child Content of Content 2'
   }];
 
-  public itemClick(event): void {
+  public itemClick (event): void {
     event.clicktimes = (event.clicktimes || 0) + 1;
   }
 
-  public menuToggle(event): void {
+  public menuToggle (event): void {
     console.log('item click', event);
   }
 
-  public onClickUser(): void {
+  public onClickUser (): void {
     console.log('onClickUser');
   }
 
-  public ngOnInit(): void {
+  public ngOnInit (): void {
     console.log('ChatSidebarAccordionComponent');
   }
-
 }

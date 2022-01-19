@@ -6,18 +6,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./chat-toolbar.component.scss']
 })
 export class ChatToolbarComponent implements OnInit {
-
-  public constructor() { }
+  public constructor () { }
 
   tab1acticeID: string | number = 'tab2';
   tab2acticeID: string | number = 'tab3';
 
-  public ngOnInit(): void {
+  public ngOnInit (): void {
     console.log('ChatToolbarComponent');
   }
 
-  activeTabChange(id) {
+  activeTabChange (id) {
     console.log(id);
   }
-
 }

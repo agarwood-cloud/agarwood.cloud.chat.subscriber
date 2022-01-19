@@ -10,12 +10,12 @@ import { ChatSidebarComponent } from './chat-sidebar/chat-sidebar.component';
 import { ChatToolbarComponent } from './chat-toolbar/chat-toolbar.component';
 import { ChatComponent } from './chat.component';
 import { ChatSocketService } from './services/chat-socket.service';
-import { SharedModule } from "../../@shared/shared.module";
-import {CardModule, SplitterModule, TagsModule} from "ng-devui";
+import { SharedModule } from '../../@shared/shared.module';
+import { CardModule, SplitterModule, TagsModule } from 'ng-devui';
 
 @NgModule({
   providers: [
-    ChatSocketService,
+    ChatSocketService
   ],
   declarations: [
     ChatComponent,
@@ -23,7 +23,7 @@ import {CardModule, SplitterModule, TagsModule} from "ng-devui";
     ChatContentComponent,
     ChatToolbarComponent,
     ChatSidebarUserComponent,
-    ChatSidebarAccordionComponent,
+    ChatSidebarAccordionComponent
   ],
   exports: [
     ChatComponent

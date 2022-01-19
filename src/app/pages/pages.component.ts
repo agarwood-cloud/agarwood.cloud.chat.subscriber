@@ -6,10 +6,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./pages.component.scss']
 })
 export class PagesComponent implements OnInit {
-
-  public constructor() { }
-
-  public ngOnInit(): void {
+  public constructor () {
+    console.log('no-useless-constructor');
   }
 
+  public ngOnInit (): void {
+    console.log('no-useless-constructor');
+  }
 }

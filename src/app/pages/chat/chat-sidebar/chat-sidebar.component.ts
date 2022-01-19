@@ -8,7 +8,6 @@ import { Customer } from '../services/customer';
   styleUrls: ['./chat-sidebar.component.scss']
 })
 export class ChatSidebarComponent implements OnInit {
-
   /**
    * active Tab
    */
@@ -40,12 +39,12 @@ export class ChatSidebarComponent implements OnInit {
    *
    * @param chatSocket ChatSocketService
    */
-  public constructor(chatSocket: ChatSocketService) {
+  public constructor (chatSocket: ChatSocketService) {
     // socket is connected
     this.chatSocket = chatSocket;
   }
 
-  public ngOnInit(): void {
+  public ngOnInit (): void {
     // set customer params
     this.customer = JSON.parse(localStorage.getItem('userInfo'));
 
@@ -64,13 +63,13 @@ export class ChatSidebarComponent implements OnInit {
       unsubscribeAt: 'string',
       subscribe: 'subscribe',
       subscribeScene: 'ADD_SCENE_SEARCH',
-      createdAt: '2022-01-14 00:00:00',
+      createdAt: '2022-01-14 00:00:00'
     };
 
     this.message = {
       id: 22222,
       content: '最后一条消息最后一条消息最后一条消息最后一条消息最后一条消息最后一条消息最后一条消息',
-      createdAt: '2022-01-14 00:00:00',
+      createdAt: '2022-01-14 00:00:00'
     };
   }
 
@@ -93,5 +92,4 @@ export class ChatSidebarComponent implements OnInit {
       this.isOnline = false;
     });
   }
-
 }
