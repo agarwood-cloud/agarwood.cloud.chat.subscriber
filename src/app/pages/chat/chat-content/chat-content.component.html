@@ -36,6 +36,8 @@
         id="chatContentTextArea"
         [(ngModel)]="messageContent"
         (paste)="sendClipboardImage($event)"
+        (keyup)="keyUp($event)"
+        (keydown)="keyDown($event)"
       ></textarea>
     </div>
     <d-row>

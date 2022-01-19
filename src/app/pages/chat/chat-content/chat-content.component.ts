@@ -100,4 +100,26 @@ export class ChatContentComponent implements OnInit {
     }
   }
 
+  /**
+   * Send message by keyup enter and press enter to wrap
+   *
+   * @param event
+   */
+  public keyUp(event) {
+    if (event.keyCode === 13) {
+      this.sendMessage();
+    }
+  }
+
+  /**
+   * Send message by keyup enter and press enter to wrap
+   *
+   * @param event
+   */
+  public keyDown(event) {
+    if (event.keyCode === 13) {
+      event.preventDefault();
+    }
+  }
+
 }
