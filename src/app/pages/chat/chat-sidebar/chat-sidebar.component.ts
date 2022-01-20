@@ -59,12 +59,6 @@ export class ChatSidebarComponent implements OnInit, AfterViewInit {
   @ViewChild('chatSidebarHeader')
   public sidebarHeaderDom: ElementRef;
 
-  /**
-   * Get chatSidebarTabHeader DOM element
-   */
-  @ViewChild('sidebarTabHeader')
-  public sidebarTabHeaderDom: ElementRef;
-
   // todo temp
   public user;
 
