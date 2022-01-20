@@ -6,7 +6,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./chat-toolbar.component.scss']
 })
 export class ChatToolbarComponent implements OnInit {
-  public constructor () { }
+  public constructor () {
+    console.log('height');
+  }
 
   tab1acticeID: string | number = 'tab2';
   tab2acticeID: string | number = 'tab3';

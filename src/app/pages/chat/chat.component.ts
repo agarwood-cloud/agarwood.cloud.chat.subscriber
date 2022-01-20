@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
 import { ChatSocketService } from './services/chat-socket.service';
 
 @Component({
@@ -16,7 +16,7 @@ export class ChatComponent implements OnInit {
   /**
    * set sidebar height
    */
-  public sidebarHeight: number = 500;
+  public sidebarHeight: number = 0;
 
   /**
    * Get chatSidebarHeader DOM element
@@ -25,12 +25,16 @@ export class ChatComponent implements OnInit {
   public sidebarDomHeader: ElementRef;
 
   /**
-   * get socket.io client instance
+   * constructor
    */
   public constructor (socket: ChatSocketService) {
     this.socket = socket;
 
+    // Getting ScreenSize
     this.getScreenSize();
+
+    // Getting Permission
+    this.webNotifications();
   }
 
   /**
@@ -52,5 +56,18 @@ export class ChatComponent implements OnInit {
   @HostListener('window:resize', ['$event'])
   public getScreenSize (event?): void {
     this.sidebarHeight = window.innerHeight;
+  }
+
+  /**
+   * Getting Permission for Web Notifications
+   *
+   * @param event
+   */
+  @HostListener('window:load', ['$event'])
+  public webNotifications (event?): void {
+    // Getting Permission
+    Notification.requestPermission().then((result) => {
+      console.log('Getting Permission', result);
+    });
   }
 }

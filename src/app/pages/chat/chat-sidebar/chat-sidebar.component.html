@@ -1,4 +1,4 @@
-<div class="chat-sidebar-header">
+<div #chatSidebarHeader class="chat-sidebar-header">
   <d-badge [showDot]="true" [status]="isOnline ? 'success': 'waiting'">
     <d-avatar
         [name]="customer.username"
@@ -7,15 +7,48 @@
   </d-badge>
   <span *ngIf="!isOnline"> 正在链接... </span>
 </div>
-<div class="chat-sidebar-content">
+<div class="chat-sidebar-content" [style.height.px]="sidebarTabHeight">
   <d-tabs [(activeTab)]="activeTab" type="slider">
-    <d-tab id="chat-list">
+    <d-tab #sidebarTabHeader id="chat-list">
       <ng-template dTabTitle>
         今天接待
       </ng-template>
       <ng-template dTabContent>
-        <app-chat-sidebar-user [user]="user" [message]="message">
-        </app-chat-sidebar-user>
+        <div [style.height.px]="sidebarTodayChatContentHeight" style="overflow: auto">
+        <div>用户组件...</div>
+        <div>用户组件...</div>
+        <div>用户组件...</div>
+        <div>用户组件...</div>
+        <div>用户组件...</div>
+        <div>用户组件...</div>
+        <div>用户组件...</div>
+        <div>用户组件...</div>
+        <div>用户组件...</div>
+        <div>用户组件...</div>
+        <div>用户组件...</div>
+        <div>用户组件...</div>
+        <div>用户组件...</div>
+        <div>用户组件...</div>
+        <div>用户组件...</div>
+        <div>用户组件...</div>
+        <div>用户组件...</div>
+        <div>用户组件...</div>
+        <div>用户组件...</div>
+        <div>用户组件...</div>
+        <div>用户组件...</div>
+        <div>用户组件...</div>
+        <div>用户组件...</div>
+        <div>用户组件...</div>
+        <div>用户组件...</div>
+        <div>用户组件...</div>
+        <div>用户组件...</div>
+        <div>用户组件...</div>
+        <div>用户组件...</div>
+        <div>用户组件...</div>
+        <div>用户组件...</div>
+        <div>用户组件...</div>
+        <div>用户组件...</div>
+        </div>
       </ng-template>
     </d-tab>
     <d-tab id="chat-all">

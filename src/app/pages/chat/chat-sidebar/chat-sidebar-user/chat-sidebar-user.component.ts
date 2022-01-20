@@ -24,7 +24,7 @@ export class ChatSidebarUserComponent implements OnInit {
    * Set limit time for three month later
    */
   public constructor () {
-    console.log('no-useless-constructor')
+    console.log('no-useless-constructor');
   }
 
   public ngOnInit () {

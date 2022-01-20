@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {AfterViewInit, Component, ElementRef, HostListener, Input, OnInit, ViewChild} from '@angular/core';
 import { ChatSocketService } from '../services/chat-socket.service';
 import { Customer } from '../services/customer';
 
@@ -7,7 +7,7 @@ import { Customer } from '../services/customer';
   templateUrl: './chat-sidebar.component.html',
   styleUrls: ['./chat-sidebar.component.scss']
 })
-export class ChatSidebarComponent implements OnInit {
+export class ChatSidebarComponent implements OnInit, AfterViewInit {
   /**
    * active Tab
    */
@@ -30,8 +30,45 @@ export class ChatSidebarComponent implements OnInit {
    */
   public isOnline = false;
 
+  @Input()
+  public sidebarHeight: number;
+
+  /**
+   * get sidebar header height
+   */
+  public sidebarHeaderHeight: number = 0;
+
+  /**
+   * get tab height for sidebar tab
+   */
+  public sidebarTabHeight: number = 0;
+
+  /**
+   * get header height for sidebar tab
+   */
+  public sidebarTabHeadHeight: number = 57;
+
+  /**
+   * get sidebar height by chat content
+   */
+  public sidebarTodayChatContentHeight: number = 0;
+
+  /**
+   * Get chatSidebarHeader DOM element
+   */
+  @ViewChild('chatSidebarHeader')
+  public sidebarHeaderDom: ElementRef;
+
+  /**
+   * Get chatSidebarTabHeader DOM element
+   */
+  @ViewChild('sidebarTabHeader')
+  public sidebarTabHeaderDom: ElementRef;
+
+  // todo temp
   public user;
 
+  // todo temp
   public message;
 
   /**
@@ -42,6 +79,8 @@ export class ChatSidebarComponent implements OnInit {
   public constructor (chatSocket: ChatSocketService) {
     // socket is connected
     this.chatSocket = chatSocket;
+
+    this.setSidebarHeight();
   }
 
   public ngOnInit (): void {
@@ -92,4 +131,28 @@ export class ChatSidebarComponent implements OnInit {
       this.isOnline = false;
     });
   }
+
+  /**
+   * A callback method that is invoked immediately after
+   * Angular has completed initialization of a component's view.
+   * It is invoked only once when the view is instantiated.
+   *
+   */
+  public ngAfterViewInit () {
+    // get sidebar header height
+    this.sidebarHeaderHeight = this.sidebarHeaderDom.nativeElement.offsetHeight;
+  }
+
+  @HostListener('window:resize', ['$event'])
+  public setSidebarHeight(): void {
+    setTimeout(() => {
+      this.sidebarTodayChatContentHeight = this.sidebarHeight - this.sidebarHeaderHeight - this.sidebarTabHeadHeight;
+    }, 100)
+
+    setTimeout(() => {
+      this.sidebarTabHeight = this.sidebarHeight - this.sidebarHeaderHeight;
+    }, 100)
+  }
+
+
 }
