@@ -1,9 +1,6 @@
 <div #chatSidebarHeader class="chat-sidebar-header">
   <d-badge [showDot]="true" [status]="isOnline ? 'success': 'waiting'">
-    <d-avatar
-        [name]="customer.username"
-        imgSrc="https://t16img.yangkeduo.com/pdd_ims/mainObject/v1/pub_20201018e8e9ac1b08d74e1ea7473b9f24ced89f.jpg">
-    </d-avatar>
+    <d-avatar [name]="customer.username" [gender]="'Female'"></d-avatar>
   </d-badge>
   <span *ngIf="!isOnline"> 正在链接... </span>
 </div>
@@ -15,39 +12,11 @@
       </ng-template>
       <ng-template dTabContent>
         <div [style.height.px]="sidebarTodayChatContentHeight" style="overflow: auto">
-        <div>用户组件...</div>
-        <div>用户组件...</div>
-        <div>用户组件...</div>
-        <div>用户组件...</div>
-        <div>用户组件...</div>
-        <div>用户组件...</div>
-        <div>用户组件...</div>
-        <div>用户组件...</div>
-        <div>用户组件...</div>
-        <div>用户组件...</div>
-        <div>用户组件...</div>
-        <div>用户组件...</div>
-        <div>用户组件...</div>
-        <div>用户组件...</div>
-        <div>用户组件...</div>
-        <div>用户组件...</div>
-        <div>用户组件...</div>
-        <div>用户组件...</div>
-        <div>用户组件...</div>
-        <div>用户组件...</div>
-        <div>用户组件...</div>
-        <div>用户组件...</div>
-        <div>用户组件...</div>
-        <div>用户组件...</div>
-        <div>用户组件...</div>
-        <div>用户组件...</div>
-        <div>用户组件...</div>
-        <div>用户组件...</div>
-        <div>用户组件...</div>
-        <div>用户组件...</div>
-        <div>用户组件...</div>
-        <div>用户组件...</div>
-        <div>用户组件...</div>
+          <app-chat-sidebar-user
+              [user]="user"
+              [message]="message"
+              *ngFor="let item of [1,2,2,2,2,2,2,2,2,3,2,2,2,2,2,4]"
+          ></app-chat-sidebar-user>
         </div>
       </ng-template>
     </d-tab>

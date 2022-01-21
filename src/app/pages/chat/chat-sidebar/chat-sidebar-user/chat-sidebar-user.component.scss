@@ -1,3 +1,13 @@
+@import "src/app/@shared/styles/common.scss";
+
+.chat-sidebar-avatar {
+  padding-bottom: 10px;
+  &:hover {
+    cursor: pointer;
+    background-color: $devui-aide-text;
+  }
+}
+
 .last-message-content {
   overflow: hidden;
   white-space: nowrap;

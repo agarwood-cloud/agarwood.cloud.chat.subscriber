@@ -1,5 +1,5 @@
-<div>
-  <d-row>
+<div class="chat-sidebar-avatar">
+  <d-row [dAlign]="'center'" style="width: 99%">
     <d-col [dSpan]="4">
       <d-avatar [name]="''" *ngIf="!user.headImgUrl"></d-avatar>
       <d-avatar [name]="user.nickname" [imgSrc]="user.headImgUrl" *ngIf="user.headImgUrl"></d-avatar>

@@ -56,6 +56,7 @@ export class ChatComponent implements OnInit {
   @HostListener('window:resize', ['$event'])
   public getScreenSize (event?): void {
     this.sidebarHeight = window.innerHeight;
+    console.log('window.innerW', window.innerWidth);
   }
 
   /**

@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, ElementRef, HostListener, Input, OnInit, ViewChild} from '@angular/core';
+import { AfterViewInit, Component, ElementRef, HostListener, Input, OnInit, ViewChild } from '@angular/core';
 import { ChatSocketService } from '../services/chat-socket.service';
 import { Customer } from '../services/customer';
 
@@ -137,16 +137,17 @@ export class ChatSidebarComponent implements OnInit, AfterViewInit {
     this.sidebarHeaderHeight = this.sidebarHeaderDom.nativeElement.offsetHeight;
   }
 
+  /**
+   * Setting Sidebar Height
+   */
   @HostListener('window:resize', ['$event'])
-  public setSidebarHeight(): void {
+  public setSidebarHeight (): void {
     setTimeout(() => {
       this.sidebarTodayChatContentHeight = this.sidebarHeight - this.sidebarHeaderHeight - this.sidebarTabHeadHeight;
-    }, 100)
+    }, 100);
 
     setTimeout(() => {
       this.sidebarTabHeight = this.sidebarHeight - this.sidebarHeaderHeight;
-    }, 100)
+    }, 100);
   }
-
-
 }
