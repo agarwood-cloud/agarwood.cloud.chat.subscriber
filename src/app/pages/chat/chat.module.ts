@@ -12,6 +12,7 @@ import { ChatComponent } from './chat.component';
 import { ChatSocketService } from './services/chat-socket.service';
 import { SharedModule } from '../../@shared/shared.module';
 import { CardModule, SplitterModule, TagsModule } from 'ng-devui';
+import { ChatLastDayPipe } from './services/chat-last-day.pipe';
 
 @NgModule({
   providers: [
@@ -23,7 +24,8 @@ import { CardModule, SplitterModule, TagsModule } from 'ng-devui';
     ChatContentComponent,
     ChatToolbarComponent,
     ChatSidebarUserComponent,
-    ChatSidebarAccordionComponent
+    ChatSidebarAccordionComponent,
+    ChatLastDayPipe
   ],
   exports: [
     ChatComponent

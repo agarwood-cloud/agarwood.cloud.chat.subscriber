@@ -1,6 +1,5 @@
 <d-accordion
-    class="menu"
-    [data]="menu"
+    [data]="userGroup"
     (itemClick)="itemClick($event)"
     (menuToggle)="menuToggle($event.item)"
     [innerListTemplate]="innerListTemplate"
@@ -8,9 +7,21 @@
 
 <ng-template #innerListTemplate let-item="item">
   <div class="accordion-submenu my-menu">
-    <a (click)="onClickUser()" style="cursor: pointer">
-      <!--这里要修改，不能使用这个组件-->
-      <app-chat-sidebar-user [user]="user"></app-chat-sidebar-user>
-    </a>
+    <!-- 用户头像选项卡 -->
+    <div class="chat-sidebar-accordion">
+      <d-row [dAlign]="'center'" class="base-container">
+        <d-col [dSpan]="4">
+          <d-avatar style="text-align: right" [gender]="'male'" [name]="'组件头像'"></d-avatar>
+        </d-col>
+        <d-col [dSpan]="16">
+          <div>nickname</div>
+          <div>备注信息...</div>
+        </d-col>
+        <d-col [dSpan]="4">
+          <div>11-03</div>
+          <div>关注</div>
+        </d-col>
+      </d-row>
+    </div>
   </div>
 </ng-template>

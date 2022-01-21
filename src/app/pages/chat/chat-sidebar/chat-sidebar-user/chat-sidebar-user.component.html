@@ -9,7 +9,7 @@
       <div class="last-message-content" *ngIf="message">{{ message.content }}</div>
     </d-col>
     <d-col [dSpan]="4" *ngIf="message">
-      <div class="last-message-time">{{ message.createdAt | dRelativeTime: limit | async }}</div>
+      <div class="last-message-time">{{ message.createdAt | chatLastDay }}</div>
     </d-col>
   </d-row>
 </div>

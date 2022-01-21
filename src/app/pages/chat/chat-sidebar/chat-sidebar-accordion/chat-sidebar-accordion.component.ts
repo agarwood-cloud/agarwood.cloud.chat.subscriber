@@ -27,7 +27,10 @@ export class ChatSidebarAccordionComponent implements OnInit {
     };
   }
 
-  menu = [{
+  /**
+   * User Group
+   */
+  public userGroup = [{
     title: 'Content 1',
     children: [],
     content: 'Child Content of Content 1'

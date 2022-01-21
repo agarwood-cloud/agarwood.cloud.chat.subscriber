@@ -90,19 +90,19 @@ export class ChatSidebarComponent implements OnInit, AfterViewInit {
       openid: '123456789',
       customerId: 'customer_id',
       customer: 'customer',
-      nickname: 'anme',
+      nickname: 'nickname',
       headImgUrl: 'string',
       subscribeAt: 'string',
       unsubscribeAt: 'string',
       subscribe: 'subscribe',
       subscribeScene: 'ADD_SCENE_SEARCH',
-      createdAt: '2022-01-14 00:00:00'
+      createdAt: '2022-01-21 00:02:10'
     };
 
     this.message = {
       id: 22222,
       content: '最后一条消息最后一条消息最后一条消息最后一条消息最后一条消息最后一条消息最后一条消息',
-      createdAt: '2022-01-14 00:00:00'
+      createdAt: '2022-01-21 22:02:10'
     };
   }
 

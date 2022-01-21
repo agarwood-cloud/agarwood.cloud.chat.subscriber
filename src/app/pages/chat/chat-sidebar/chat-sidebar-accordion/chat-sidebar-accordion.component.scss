@@ -1,23 +1,9 @@
 @import "src/app/@shared/styles/common.scss";
 
-.my-menu {
-  min-height: 60px;
-  line-height: 40px;
-  padding: 12px;
-}
-
-.menu {
-  width: 100%;
-}
-
-.my-menu {
-  min-height: 60px;
-  line-height: 40px;
-  padding: 12px;
-}
-
-@media (max-width: 500px) {
-  .menu {
-    width: 80%;
+.chat-sidebar-accordion {
+  padding: 10px;
+  &:hover {
+    cursor: pointer;
+    background-color: $devui-list-item-hover-bg;
   }
 }

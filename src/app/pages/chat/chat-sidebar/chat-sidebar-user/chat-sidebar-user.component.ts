@@ -1,5 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import * as dayjs from 'dayjs';
 import { LastMessage } from '../../services/last-message';
 import { User } from '../../services/user';
 
@@ -16,12 +15,7 @@ export class ChatSidebarUserComponent implements OnInit {
   public message: LastMessage;
 
   /**
-   * 3 month later
-   */
-  public limit: number;
-
-  /**
-   * Set limit time for three month later
+   * constructor
    */
   public constructor () {
     console.log('no-useless-constructor');
@@ -29,6 +23,6 @@ export class ChatSidebarUserComponent implements OnInit {
 
   public ngOnInit () {
     // Set limit time for three month later
-    this.limit = dayjs().add(3, 'month').unix();
+    // this.limit = dayjs().add(3, 'month').unix();
   }
 }
