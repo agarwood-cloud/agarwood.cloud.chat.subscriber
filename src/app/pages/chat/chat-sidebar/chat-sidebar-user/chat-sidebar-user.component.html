@@ -1,15 +1,19 @@
 <div class="chat-sidebar-avatar">
   <d-row [dAlign]="'center'" style="width: 99%">
     <d-col [dSpan]="4">
-      <d-avatar [name]="''" *ngIf="!user.headImgUrl"></d-avatar>
-      <d-avatar [name]="user.nickname" [imgSrc]="user.headImgUrl" *ngIf="user.headImgUrl"></d-avatar>
+      <d-avatar [name]="''" *ngIf="!lastMessage.user.headImgUrl"></d-avatar>
+      <d-avatar
+          [name]="lastMessage.user.nickname"
+          [imgSrc]="lastMessage.user.headImgUrl"
+          *ngIf="lastMessage.user.headImgUrl"
+      ></d-avatar>
     </d-col>
     <d-col [dSpan]="16">
-      <span>{{ user.nickname }}</span>
-      <div class="last-message-content" *ngIf="message">{{ message.content }}</div>
+      <span>{{ lastMessage.user.nickname || lastMessage.openid }}</span>
+      <div class="last-message-content" *ngIf="lastMessage.data">{{ lastMessage.data.content }}</div>
     </d-col>
-    <d-col [dSpan]="4" *ngIf="message">
-      <div class="last-message-time">{{ message.createdAt | chatLastDay }}</div>
+    <d-col [dSpan]="4" *ngIf="lastMessage">
+      <div class="last-message-time">{{ lastMessage.createdAt | chatLastDay }}</div>
     </d-col>
   </d-row>
 </div>

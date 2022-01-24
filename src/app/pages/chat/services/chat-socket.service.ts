@@ -4,7 +4,7 @@ import * as dayjs from 'dayjs';
 import { Observable } from 'rxjs';
 import { io, Socket } from 'socket.io-client';
 import { Websocket } from '../../../../config/websocket';
-import { ImageMessage, NewsItemMessage, TextMessage, VideoMessage, VoiceMessage } from './message';
+import { ImageMessage, NewsItemMessage, TextMessage, VideoMessage, VoiceMessage } from './interfaces/message';
 
 @Injectable()
 export class ChatSocketService {
@@ -18,19 +18,17 @@ export class ChatSocketService {
    */
   private readonly http: HttpClient;
 
+  /**
+   * @private
+   */
+  private readonly fromUserId: string = '';
+
   // init socket.io
   public constructor (http: HttpClient) {
     this.http = http;
 
-    // login
-    this.socket = io(`${Websocket.HOST}:${Websocket.PORT}/chat`, {
-      auth: {
-        Authorization: `${localStorage.getItem('token')}`,
-        id: JSON.parse(
-          localStorage.getItem('userInfo') as string
-        ).id
-      }
-    });
+    // init socket.io
+    this.socketLogin(ChatSocketService.getFromUserId());
   }
 
   /**
@@ -44,6 +42,38 @@ export class ChatSocketService {
   }
 
   /**
+   * Get userId params
+   *
+   * @private
+   */
+  private static getFromUserId (): string {
+    // fromUserId: this.userInfo.id,
+    const userInfo = localStorage.getItem('userInfo');
+    console.log('userInfo', userInfo, String(JSON.parse(userInfo).id));
+    if (userInfo) {
+      return String(JSON.parse(userInfo).id);
+    }
+
+    // todo 未登陆的处理
+    return '';
+  }
+
+  /**
+   * socket connect
+   *
+   * @private
+   */
+  private socketLogin (userId: string): void {
+    // login
+    this.socket = io(`${Websocket.HOST}:${Websocket.PORT}/chat`, {
+      auth: {
+        Authorization: `${localStorage.getItem('token')}`,
+        id: userId
+      }
+    });
+  }
+
+  /**
    * Send text message to tencent
    *
    * @param toUserName
@@ -53,9 +83,7 @@ export class ChatSocketService {
     const message: TextMessage = {
       officialAccountId: ChatSocketService.getOfficialAccountId(),
       toUserName: toUserName,
-      fromUserId: JSON.parse(
-        localStorage.getItem('userInfo') as string
-      ).id,
+      fromUserId: ChatSocketService.getFromUserId(),
       createdAt: dayjs().format('YYYY-MM-DD HH:mm:ss').toString(),
       msgType: 'text.message',
       content: content,
@@ -67,16 +95,15 @@ export class ChatSocketService {
   /**
    * Send Image Message to tencent
    *
+   * @param toUserName
    * @param mediaId
    * @param imageUrl
    */
-  public sendImageMessage (mediaId: string, imageUrl: string): void {
+  public sendImageMessage (toUserName: string, mediaId: string, imageUrl: string): void {
     const message: ImageMessage = {
       officialAccountId: ChatSocketService.getOfficialAccountId(),
-      toUserName: '',
-      fromUserId: JSON.parse(
-        localStorage.getItem('userInfo') as string
-      ).id,
+      toUserName: toUserName,
+      fromUserId: ChatSocketService.getFromUserId(),
       createdAt: dayjs().format('YYYY-MM-DD HH:mm:ss').toString(),
       msgType: 'image.message',
       imageUrl: imageUrl,
@@ -109,9 +136,7 @@ export class ChatSocketService {
     const message: VideoMessage = {
       createdAt: dayjs().format('YYYY-MM-DD HH:mm:ss').toString(),
       description: description,
-      fromUserId: JSON.parse(
-        localStorage.getItem('userInfo') as string
-      ).id,
+      fromUserId: ChatSocketService.getFromUserId(),
       mediaId: mediaId,
       msgType: 'video.message',
       officialAccountId: ChatSocketService.getOfficialAccountId(),
@@ -137,9 +162,7 @@ export class ChatSocketService {
     const message: NewsItemMessage = {
       createdAt: dayjs().format('YYYY-MM-DD HH:mm:ss').toString(),
       description: description,
-      fromUserId: JSON.parse(
-        localStorage.getItem('userInfo') as string
-      ).id,
+      fromUserId: ChatSocketService.getFromUserId(),
       imageUrl: imageUrl,
       msgType: 'news.item.message',
       officialAccountId: ChatSocketService.getOfficialAccountId(),
@@ -161,9 +184,7 @@ export class ChatSocketService {
   public sendVoiceMessage (toUserName: string, voiceUrl: string, mediaId: string): void {
     const message: VoiceMessage = {
       createdAt: dayjs().format('YYYY-MM-DD HH:mm:ss').toString(),
-      fromUserId: JSON.parse(
-        localStorage.getItem('userInfo') as string
-      ).id,
+      fromUserId: ChatSocketService.getFromUserId(),
       mediaId: mediaId,
       msgType: 'voice.message',
       officialAccountId: ChatSocketService.getOfficialAccountId(),
@@ -181,6 +202,6 @@ export class ChatSocketService {
    * @param image FormData
    */
   public uploadImage (image: FormData): Observable<any> {
-    return this.http.post('user-center/official-account/v3/chat/upload-image', image);
+    return this.http.post('/user-center/official-account/v3/chat/upload-image', image);
   }
 }

@@ -31,11 +31,11 @@ export class ChatSidebarAccordionComponent implements OnInit {
    * User Group
    */
   public userGroup = [{
-    title: 'Content 1',
+    title: '华南战区',
     children: [],
     content: 'Child Content of Content 1'
   }, {
-    title: 'Content 2',
+    title: '东部战区',
     children: [],
     content: 'Child Content of Content 2'
   }];

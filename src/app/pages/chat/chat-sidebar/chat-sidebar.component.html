@@ -13,9 +13,8 @@
       <ng-template dTabContent>
         <div [style.height.px]="sidebarTodayChatContentHeight" style="overflow: auto">
           <app-chat-sidebar-user
-              [user]="user"
-              [message]="message"
-              *ngFor="let item of [1,2,2,2,2,2,2,2,2,3,2,2,2,2,2,4]"
+              *ngFor="let item of lastMessage"
+              [lastMessage]="item"
           ></app-chat-sidebar-user>
         </div>
       </ng-template>

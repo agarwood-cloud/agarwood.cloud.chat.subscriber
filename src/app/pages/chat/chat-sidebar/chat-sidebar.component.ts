@@ -1,6 +1,8 @@
 import { AfterViewInit, Component, ElementRef, HostListener, Input, OnInit, ViewChild } from '@angular/core';
 import { ChatSocketService } from '../services/chat-socket.service';
-import { Customer } from '../services/customer';
+import { Customer } from '../services/interfaces/customer';
+import {ChatService} from "../services/chat.service";
+import {LastMessage} from "../services/interfaces/chat-message";
 
 @Component({
   selector: 'app-chat-sidebar',
@@ -24,6 +26,13 @@ export class ChatSidebarComponent implements OnInit, AfterViewInit {
    * @private
    */
   private readonly chatSocket: ChatSocketService;
+
+  /**
+   * ChatService Object
+   *
+   * @private
+   */
+  private readonly chatService: ChatService;
 
   /**
    * Whether the websocket is connected
@@ -59,51 +68,33 @@ export class ChatSidebarComponent implements OnInit, AfterViewInit {
   @ViewChild('chatSidebarHeader')
   public sidebarHeaderDom: ElementRef;
 
-  // todo temp
-  public user;
-
-  // todo temp
-  public message;
+  /**
+   * Get lastMessage for chat item
+   */
+  public lastMessage: LastMessage[] = [];
 
   /**
    * initializes the ChatSidebarComponent
    *
    * @param chatSocket ChatSocketService
+   * @param chatService ChatService
    */
-  public constructor (chatSocket: ChatSocketService) {
+  public constructor (chatSocket: ChatSocketService, chatService: ChatService) {
     // socket is connected
     this.chatSocket = chatSocket;
 
+    this.chatService = chatService;
+
     this.setSidebarHeight();
+
+    this.getChatList();
   }
 
   public ngOnInit (): void {
     // set customer params
     this.customer = JSON.parse(localStorage.getItem('userInfo'));
 
-    console.log('this.socket', this.chatSocket);
     this.isSocketConnected();
-
-    this.user = {
-      id: 1111,
-      officialAccountId: 2222,
-      openid: '123456789',
-      customerId: 'customer_id',
-      customer: 'customer',
-      nickname: 'nickname',
-      headImgUrl: 'string',
-      subscribeAt: 'string',
-      unsubscribeAt: 'string',
-      subscribe: 'subscribe',
-      subscribeScene: 'ADD_SCENE_SEARCH',
-      createdAt: '2022-01-21 00:02:10'
-    };
-
-    this.message = {
-      id: 22222,
-      content: '最后一条消息最后一条消息最后一条消息最后一条消息最后一条消息最后一条消息最后一条消息',
-      createdAt: '2022-01-21 22:02:10'
-    };
   }
 
   /**
@@ -111,17 +102,14 @@ export class ChatSidebarComponent implements OnInit, AfterViewInit {
    */
   public isSocketConnected (): void {
     this.chatSocket.socket.on('connect', () => {
-      console.log('connected');
       this.isOnline = true;
     });
 
     this.chatSocket.socket.on('disconnect', () => {
-      console.log('disconnected');
       this.isOnline = false;
     });
 
     this.chatSocket.socket.on('connect_error', () => {
-      console.log('connect_error');
       this.isOnline = false;
     });
   }
@@ -149,5 +137,17 @@ export class ChatSidebarComponent implements OnInit, AfterViewInit {
     setTimeout(() => {
       this.sidebarTabHeight = this.sidebarHeight - this.sidebarHeaderHeight;
     }, 100);
+  }
+
+  /**
+   * Get chat list
+   *
+   * @public
+   */
+  public getChatList (): void {
+    this.chatService.getChatList().subscribe(chatList => {
+      this.lastMessage = chatList.data;
+      console.log('chatList', this.lastMessage);
+    });
   }
 }
