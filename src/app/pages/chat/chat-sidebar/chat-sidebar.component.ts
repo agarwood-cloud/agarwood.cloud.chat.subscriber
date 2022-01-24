@@ -1,8 +1,10 @@
 import { AfterViewInit, Component, ElementRef, HostListener, Input, OnInit, ViewChild } from '@angular/core';
 import { ChatSocketService } from '../services/chat-socket.service';
 import { Customer } from '../services/interfaces/customer';
-import {ChatService} from "../services/chat.service";
-import {LastMessage} from "../services/interfaces/chat-message";
+import { ChatService } from '../services/chat.service';
+import { LastMessage } from '../services/interfaces/chat-message';
+import { User } from '../services/interfaces/user';
+import { ActiveUserService } from '../services/active-user.service';
 
 @Component({
   selector: 'app-chat-sidebar',
@@ -19,20 +21,6 @@ export class ChatSidebarComponent implements OnInit, AfterViewInit {
    * customer service name
    */
   public customer: Customer;
-
-  /**
-   * ChatSocketService Object
-   *
-   * @private
-   */
-  private readonly chatSocket: ChatSocketService;
-
-  /**
-   * ChatService Object
-   *
-   * @private
-   */
-  private readonly chatService: ChatService;
 
   /**
    * Whether the websocket is connected
@@ -74,17 +62,22 @@ export class ChatSidebarComponent implements OnInit, AfterViewInit {
   public lastMessage: LastMessage[] = [];
 
   /**
+   * Get active user
+   */
+  public activeOpenid: string;
+
+  /**
    * initializes the ChatSidebarComponent
    *
    * @param chatSocket ChatSocketService
    * @param chatService ChatService
+   * @param activeUser ActiveUserService
    */
-  public constructor (chatSocket: ChatSocketService, chatService: ChatService) {
-    // socket is connected
-    this.chatSocket = chatSocket;
-
-    this.chatService = chatService;
-
+  public constructor (
+      private readonly chatSocket: ChatSocketService,
+      private readonly chatService: ChatService,
+      private readonly activeUser: ActiveUserService
+  ) {
     this.setSidebarHeight();
 
     this.getChatList();
@@ -147,7 +140,16 @@ export class ChatSidebarComponent implements OnInit, AfterViewInit {
   public getChatList (): void {
     this.chatService.getChatList().subscribe(chatList => {
       this.lastMessage = chatList.data;
-      console.log('chatList', this.lastMessage);
     });
+  }
+
+  /**
+   * active chat item
+   *
+   * @param user
+   */
+  public selectUser (user: User): void {
+    this.activeOpenid = user.openid;
+    this.activeUser.clickUser(user)
   }
 }

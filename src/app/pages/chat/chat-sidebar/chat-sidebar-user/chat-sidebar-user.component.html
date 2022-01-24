@@ -1,4 +1,4 @@
-<div class="chat-sidebar-avatar">
+<div class="chat-sidebar-avatar" [ngClass]="(lastMessage.openid === activeOpenid) ? 'active' : 'not-active'">
   <d-row [dAlign]="'center'" style="width: 99%">
     <d-col [dSpan]="4">
       <d-avatar [name]="''" *ngIf="!lastMessage.user.headImgUrl"></d-avatar>

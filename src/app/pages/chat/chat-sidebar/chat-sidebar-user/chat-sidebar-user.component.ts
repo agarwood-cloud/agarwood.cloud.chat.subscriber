@@ -10,6 +10,9 @@ export class ChatSidebarUserComponent implements OnInit {
   @Input()
   public lastMessage: LastMessage;
 
+  @Input()
+  public activeOpenid: string;
+
   /**
    * constructor
    */

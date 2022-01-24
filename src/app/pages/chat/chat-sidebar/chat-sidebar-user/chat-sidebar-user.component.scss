@@ -8,6 +8,11 @@
   }
 }
 
+.active {
+  color: $devui-primary-active;
+  background-color: $devui-list-item-hover-bg;
+}
+
 .last-message-content {
   overflow: hidden;
   white-space: nowrap;

@@ -46,7 +46,7 @@ export class ChatContentComponent implements OnInit {
     // 如果空值，不能发送
     if (!this.messageContent) {
       this.toast.open({
-        value: [{ severity: 'info', content: 'Please Enter!' }]
+        value: [{ severity: 'info', content: 'Please Enter Message!' }]
       });
       return;
     }
@@ -90,7 +90,7 @@ export class ChatContentComponent implements OnInit {
           // todo 待加入发送socket 消息
           // res 的格式为: { data: [{ imageUrl: 'http://xxx.com/xxx.png', mediaInfo: xxx }] }
 
-          this.chatSocket.sendImageMessage('openid', 'mediaId','url');
+          this.chatSocket.sendImageMessage('openid', 'mediaId', 'url');
         });
 
         // 阻止默认行为即不让剪贴板内容在div中显示出来

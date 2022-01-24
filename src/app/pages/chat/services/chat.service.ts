@@ -26,14 +26,14 @@ export class ChatService {
    * @returns {Observable<any>}
    */
   public getChatList (): Observable<any> {
-    return this.http.get(`/user-center/official-account/v3/chat/chat-list`);
+    return this.http.get('/user-center/official-account/v3/chat/chat-list');
   }
 
   /**
    * Get customer fans group for detail
    */
   public getCustomerServiceGroup (): Observable<any> {
-    return this.http.get(`/user-center/customer/v3/user-group-for-customer`);
+    return this.http.get('/user-center/customer/v3/user-group-for-customer');
   }
 
   /**
@@ -48,7 +48,7 @@ export class ChatService {
    */
   public postCustomerServiceGroup (data: any): Observable<any> {
     // todo data type
-    return this.http.post(`/user-center/customer/v3/user-group-for-customer`, data);
+    return this.http.post('/user-center/customer/v3/user-group-for-customer', data);
   }
 
   /**

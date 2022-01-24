@@ -14,11 +14,13 @@ import { SharedModule } from '../../@shared/shared.module';
 import { CardModule, SplitterModule, TagsModule } from 'ng-devui';
 import { ChatLastDayPipe } from './services/chat-last-day.pipe';
 import { ChatService } from './services/chat.service';
+import { ActiveUserService } from './services/active-user.service';
 
 @NgModule({
   providers: [
     ChatSocketService,
-    ChatService
+    ChatService,
+    ActiveUserService
   ],
   declarations: [
     ChatComponent,
