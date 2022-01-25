@@ -1,29 +1,31 @@
-<d-card>
-  <!--昵称备注-->
-  <d-row>
-    <d-col [dSpan]="2">
-      <d-avatar style="text-align: right" [gender]="'Female'" [name]="'组件头像'"></d-avatar>
-    </d-col>
-    <d-col [dSpan]="16">
-      <div>
-        <span>nickname</span>
-        <d-tag style="padding-left: 10px" [tag]="'女'" [labelStyle]="'red-w98'"></d-tag>
-      </div>
-      <div>备注</div>
-    </d-col>
-    <d-col [dSpan]="6">
-      转移会话
-    </d-col>
-  </d-row>
-</d-card>
+<div class="chat-content" *ngIf="activeUser.user" [style.height.px]="contentHeight">
+  <d-card>
+    <!--昵称备注-->
+    <d-row>
+      <d-col [dSpan]="2">
+        <d-avatar style="text-align: right" [gender]="'Female'" [name]="'组件头像'"></d-avatar>
+      </d-col>
+      <d-col [dSpan]="16">
+        <div>
+          <span>{{ activeUser.user.nickname || activeUser.user.openid }}</span>
+          <d-tag style="padding-left: 10px" [tag]="'女'" [labelStyle]="'red-w98'"></d-tag>
+        </div>
+        <div>备注</div>
+      </d-col>
+      <d-col [dSpan]="6">
+        转移会话
+      </d-col>
+    </d-row>
+    <d-row *ngIf="activeUser"></d-row>
+  </d-card>
 
-<!--聊天记录-->
-<div class="chat-content-record">
-  聊天记录
-</div>
+  <!--聊天记录-->
+  <div class="chat-content-record">
+    聊天记录
+  </div>
 
-<!--输入栏-->
-<div class="chat-content-bottom">
+  <!--输入栏-->
+  <div class="chat-content-bottom">
     <div class="chat-content-bottom-toolbar">
       <em class="icon-emoji"></em>
       <em class="icon-picture"></em>
@@ -31,13 +33,13 @@
     </div>
     <div class="chat-content-bottom-textarea">
       <textarea
-        dTextarea
-        placeholder="Please Enter..."
-        id="chatContentTextArea"
-        [(ngModel)]="messageContent"
-        (paste)="sendClipboardImage($event)"
-        (keyup)="keyUp($event)"
-        (keydown)="keyDown($event)"
+              dTextarea
+              placeholder="Please Enter..."
+              id="chatContentTextArea"
+              [(ngModel)]="messageContent"
+              (paste)="sendClipboardImage($event)"
+              (keyup)="keyUp($event)"
+              (keydown)="keyDown($event)"
       ></textarea>
     </div>
     <d-row>
@@ -46,10 +48,23 @@
       </d-col>
       <d-col [dSpan]="3">
         <d-button
-          class="chat-content-bottom-send"
-          bsStyle="primary"
-          (click)="sendMessage()"
+                class="chat-content-bottom-send"
+                bsStyle="primary"
+                (click)="sendMessage()"
         > Send </d-button>
       </d-col>
     </d-row>
+  </div>
 </div>
+<!-- 未选中的界面 -->
+<d-row
+   [dAlign]="'center'"
+   class="chat-content-not-active"
+   [style.height.px]="contentHeight"
+   *ngIf="!activeUser.user"
+>
+  <d-col [dSpan]="24">
+    <em class="icon-message"></em>
+    <div class="chat-content-not-active-tips">点击左侧会话与卖家聊天</div>
+  </d-col>
+</d-row>

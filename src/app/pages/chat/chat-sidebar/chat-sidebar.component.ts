@@ -150,6 +150,6 @@ export class ChatSidebarComponent implements OnInit, AfterViewInit {
    */
   public selectUser (user: User): void {
     this.activeOpenid = user.openid;
-    this.activeUser.clickUser(user)
+    this.activeUser.clickUser(user);
   }
 }

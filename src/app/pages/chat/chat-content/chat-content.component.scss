@@ -24,3 +24,14 @@
     padding: 5px;
   }
 }
+
+.chat-content-not-active {
+  background-color: $devui-global-bg;
+  font-size: xxx-large;
+  text-align: center;
+  color: $devui-aide-text;
+
+  .chat-content-not-active-tips {
+    font-size: large;
+  }
+}

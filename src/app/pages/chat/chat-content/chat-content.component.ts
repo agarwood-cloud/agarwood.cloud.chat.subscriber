@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import * as dayjs from 'dayjs';
 import { ToastService } from 'ng-devui/toast';
 import { ChatSocketService } from '../services/chat-socket.service';
+import { ActiveUserService } from '../services/active-user.service';
 
 @Component({
   selector: 'app-chat-content',
@@ -10,14 +11,10 @@ import { ChatSocketService } from '../services/chat-socket.service';
 })
 export class ChatContentComponent implements OnInit {
   /**
-   * @private
+   * height of chat content
    */
-  private readonly chatSocket: ChatSocketService;
-
-  /**
-   * @private
-   */
-  private readonly toast: ToastService;
+  @Input()
+  public contentHeight: number = 0;
 
   /**
    * message content
@@ -29,10 +26,13 @@ export class ChatContentComponent implements OnInit {
    *
    * @param chatSocket ChatSocketService
    * @param toast ToastService
+   * @param activeUser ActiveUserService
    */
-  public constructor (chatSocket: ChatSocketService, toast: ToastService) {
-    this.chatSocket = chatSocket;
-    this.toast = toast;
+  public constructor (
+      private readonly chatSocket: ChatSocketService,
+      private readonly toast: ToastService,
+      public activeUser: ActiveUserService
+  ) {
   }
 
   public ngOnInit (): void {
