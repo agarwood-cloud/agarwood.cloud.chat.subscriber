@@ -53,8 +53,8 @@ export class ChatContentComponent implements OnInit {
 
     // send to user
     const message = this.messageContent;
-    // todo 用户的openid信息
-    this.chatSocket.sendTextMessage('owy666UYQjia9_NxtRAmBAIvFtYY', message);
+    const openid = this.activeUser.user.openid;
+    this.chatSocket.sendTextMessage(openid, message);
     // 清空消息框
     this.messageContent = '';
   }
@@ -90,7 +90,10 @@ export class ChatContentComponent implements OnInit {
           // todo 待加入发送socket 消息
           // res 的格式为: { data: [{ imageUrl: 'http://xxx.com/xxx.png', mediaInfo: xxx }] }
 
-          this.chatSocket.sendImageMessage('openid', 'mediaId', 'url');
+          const openid = this.activeUser.user.openid;
+          const mediaId = res.data[0].mediaId;
+          const imageUrl = res.data[0].imageUrl;
+          this.chatSocket.sendImageMessage(openid, mediaId, imageUrl);
         });
 
         // 阻止默认行为即不让剪贴板内容在div中显示出来

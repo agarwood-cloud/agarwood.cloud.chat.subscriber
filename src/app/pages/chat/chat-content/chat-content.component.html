@@ -33,24 +33,23 @@
     </div>
     <div class="chat-content-bottom-textarea">
       <textarea
-              dTextarea
-              placeholder="Please Enter..."
-              id="chatContentTextArea"
-              [(ngModel)]="messageContent"
-              (paste)="sendClipboardImage($event)"
-              (keyup)="keyUp($event)"
-              (keydown)="keyDown($event)"
+          dTextarea
+          placeholder="Please Enter..."
+          id="chatContentTextArea"
+          [(ngModel)]="messageContent"
+          (paste)="sendClipboardImage($event)"
+          (keyup)="keyUp($event)"
+          (keydown)="keyDown($event)"
       ></textarea>
     </div>
     <d-row>
       <d-col [dSpan]="21">
-        这里是滚动通知栏....
       </d-col>
       <d-col [dSpan]="3">
         <d-button
-                class="chat-content-bottom-send"
-                bsStyle="primary"
-                (click)="sendMessage()"
+            class="chat-content-bottom-send"
+            bsStyle="primary"
+            (click)="sendMessage()"
         > Send </d-button>
       </d-col>
     </d-row>
