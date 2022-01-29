@@ -1,20 +1,57 @@
-<section>
-  <d-tabs [type]="'tabs'" [(activeTab)]="tab1acticeID" (activeTabChange)="activeTabChange($event)">
-    <d-tab id="tab1" title="商品推荐" tabId="tab1">
+<section [style.height.px]="chatToolbarHeight">
+  <d-tabs [type]="'tabs'" [(activeTab)]="tabProduct" (activeTabChange)="activeTabChange($event)">
+    <d-tab id="tabProduct" title="商品推荐" tabId="tabProduct">
       <ng-template dTabContent>
-        <p>Tab1 Content</p>
+        <div class="chat-toolbar-tab-content" [style.height.px]="tabContentHeight">
+          <p>Tab1 Content</p>
+          <p>Tab1 Content</p>
+          <p>Tab1 Content</p>
+          <p>Tab1 Content</p>
+          <p>Tab1 Content</p>
+          <p>Tab1 Content</p>
+          <p>Tab1 Content</p>
+          <p>Tab1 Content</p><p>Tab1 Content</p>
+          <p>Tab1 Content</p><p>Tab1 Content</p>
+          <p>Tab1 Content</p>
+          <p>Tab1 Content</p>
+          <p>Tab1 Content</p><p>Tab1 Content</p>
+          <p>Tab1 Content</p><p>Tab1 Content</p>
+          <p>Tab1 Content</p><p>Tab1 Content</p>
+          <p>Tab1 Content</p><p>Tab1 Content</p>
+          <p>Tab1 Content</p><p>Tab1 Content</p>
+          <p>Tab1 Content</p><p>Tab1 Content</p>
+          <p>Tab1 Content</p><p>Tab1 Content</p>
+          <p>Tab1 Content</p><p>Tab1 Content</p>
+          <p>Tab1 Content</p><p>Tab1 Content</p>
+          <p>Tab1 Content</p><p>Tab1 Content</p>
+          <p>Tab1 Content</p><p>Tab1 Content</p>
+          <p>Tab1 Content</p><p>Tab1 Content</p>
+          <p>Tab1 Content</p><p>Tab1 Content</p>
+          <p>Tab1 Content</p><p>Tab1 Content</p>
+          <p>Tab1 Content</p><p>Tab1 Content</p>
+          <p>Tab1 Content</p><p>Tab1 Content</p>
+          <p>Tab1 Content</p><p>Tab1 Content</p>
+          <p>Tab1 Content</p><p>Tab1 Content</p>
+          <p>Tab1 Content</p><p>Tab1 Content</p>
+          <p>Tab1 Content</p><p>Tab1 Content</p>
+          <p>Tab1 Content</p><p>Tab1 Content</p>
+        </div>
       </ng-template>
     </d-tab>
 
-    <d-tab id="tab2" title="最新订单" tabId="tab2">
+    <d-tab id="tabOrder" title="最新订单" tabId="tabOrder">
       <ng-template dTabContent>
-        <p>Tab2 Content</p>
+        <div class="chat-toolbar-tab-content" [style.height.px]="tabContentHeight">
+          <p>Tab2 Content</p>
+        </div>
       </ng-template>
     </d-tab>
 
-    <d-tab id="tab3" title="快捷回复" tabId="tab3">
+    <d-tab id="tabQuick" title="快捷回复" tabId="tabQuick">
       <ng-template dTabContent>
-        <p>Tab3 Content</p>
+        <div class="chat-toolbar-tab-content" [style.height.px]="tabContentHeight">
+          <p>Tab3 Content</p>
+        </div>
       </ng-template>
     </d-tab>
   </d-tabs>
