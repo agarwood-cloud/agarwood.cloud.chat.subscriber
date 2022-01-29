@@ -1,8 +1,8 @@
 <d-accordion
-    [data]="userGroup"
-    (itemClick)="itemClick($event)"
-    (menuToggle)="menuToggle($event.item)"
-    [innerListTemplate]="innerListTemplate"
+  [data]="userGroup"
+  (itemClick)="itemClick($event)"
+  (menuToggle)="menuToggle($event.item)"
+  [innerListTemplate]="innerListTemplate"
 ></d-accordion>
 
 <ng-template #innerListTemplate let-item="item">

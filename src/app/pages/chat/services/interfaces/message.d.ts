@@ -35,7 +35,7 @@ export interface NewsItemMessage {
   title: string;
   description: string;
   imageUrl: string;
-  // url: string;
+  newsItemUrl: string;
 }
 
 export interface VoiceMessage {

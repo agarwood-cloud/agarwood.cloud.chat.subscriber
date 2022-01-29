@@ -57,4 +57,11 @@ export class ChatService {
   public deleteCustomerServiceGroup (id: number): Observable<any> {
     return this.http.delete(`/user-center/customer/v3/user-group-for-customer/${id}`);
   }
+
+  /**
+   * Get User Info
+   */
+  public getUser (): Observable<any> {
+    return this.http.get('/user-center/official-account/v3/user');
+  }
 }

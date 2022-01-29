@@ -18,16 +18,24 @@ export interface ChatMessage {
  * @name ChatMessage
  */
 export interface LastMessage {
-  id: string;
+  id: string | number;
   openid: string;
   customerId: string;
   sender: string;
   msgType: string;
   data: {
+    // 不同的消息内容，值不一样
     content: string;
+    newsItemUrl?: string;
+    imageUrl?: string;
+    voiceUrl?: string;
+    videoUrl?: string;
+    title?: string;
+    description?: string;
   },
   createdAt: string;
   isRead: boolean;
+  // noReadNum: number;
   user: {
     id: string | number;
     officialAccountId: string | number;

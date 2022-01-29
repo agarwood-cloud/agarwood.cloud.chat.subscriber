@@ -49,7 +49,6 @@ export class ChatSocketService {
   private static getFromUserId (): string {
     // fromUserId: this.userInfo.id,
     const userInfo = localStorage.getItem('userInfo');
-    console.log('userInfo', userInfo, String(JSON.parse(userInfo).id));
     if (userInfo) {
       return String(JSON.parse(userInfo).id);
     }
@@ -157,8 +156,9 @@ export class ChatSocketService {
    * @param imageUrl
    * @param title
    * @param description
+   * @param newsItemUrl
    */
-  public sendNewsItemMessage (toUserName: string, imageUrl: string, title: string, description: string): void {
+  public sendNewsItemMessage (toUserName: string, imageUrl: string, title: string, description: string, newsItemUrl: string): void {
     const message: NewsItemMessage = {
       createdAt: dayjs().format('YYYY-MM-DD HH:mm:ss').toString(),
       description: description,
@@ -168,7 +168,8 @@ export class ChatSocketService {
       officialAccountId: ChatSocketService.getOfficialAccountId(),
       sender: 'customer',
       title: title,
-      toUserName: toUserName
+      toUserName: toUserName,
+      newsItemUrl: newsItemUrl
     };
 
     this.socket.emit('wechat.message', message);
