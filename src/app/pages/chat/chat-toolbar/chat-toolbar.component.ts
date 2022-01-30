@@ -23,7 +23,7 @@ export class ChatToolbarComponent implements OnInit {
   public tabContentHeight: number = 0;
 
   public constructor () {
-    console.log('height');
+    console.log('ChatToolbarComponent constructor');
   }
 
   /**

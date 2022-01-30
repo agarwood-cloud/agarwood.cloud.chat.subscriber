@@ -18,7 +18,7 @@ export class ActiveUserService {
    * @param user The user to set.
    */
   public clickUser (user: User) {
-    console.log('active.user', user);
+    // console.log('active.user', user);
     this.user = user;
   }
 }

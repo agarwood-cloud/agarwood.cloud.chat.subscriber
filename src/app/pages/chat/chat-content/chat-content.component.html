@@ -1,31 +1,64 @@
 <div class="chat-content" *ngIf="activeUser.user" [style.height.px]="contentHeight">
-  <d-card>
-    <!--昵称备注-->
-    <d-row>
-      <d-col [dSpan]="2">
-        <d-avatar style="text-align: right" [gender]="'Female'" [name]="'组件头像'"></d-avatar>
-      </d-col>
-      <d-col [dSpan]="16">
-        <div>
-          <span>{{ activeUser.user.nickname || activeUser.user.openid }}</span>
-          <d-tag style="padding-left: 10px" [tag]="'女'" [labelStyle]="'red-w98'"></d-tag>
-        </div>
-        <div>备注</div>
-      </d-col>
-      <d-col [dSpan]="6">
-        转移会话
-      </d-col>
-    </d-row>
-    <d-row *ngIf="activeUser"></d-row>
-  </d-card>
+
+  <!-- header -->
+  <div class="chat-content-header" #chatContentHeader>
+    <d-card>
+      <!--昵称备注-->
+      <d-row>
+        <d-col [dSpan]="2">
+          <d-avatar style="text-align: right" [gender]="'Female'" [name]="'组件头像'"></d-avatar>
+        </d-col>
+        <d-col [dSpan]="16">
+          <div>
+            <span>{{ activeUser.user.nickname || activeUser.user.openid }}</span>
+            <d-tag style="padding-left: 10px" [tag]="'女'" [labelStyle]="'red-w98'"></d-tag>
+          </div>
+          <div>备注</div>
+        </d-col>
+        <d-col [dSpan]="6">
+          转移会话
+        </d-col>
+      </d-row>
+      <d-row *ngIf="activeUser"></d-row>
+    </d-card>
+  </div>
 
   <!--聊天记录-->
-  <div class="chat-content-record">
-    聊天记录
+  <div class="chat-content-record" [style.height.px]="chatContentRecordHeight">
+    <p>聊天记录</p>
+    <p>聊天记录</p>
+    <p>聊天记录</p>
+    <p>聊天记录</p>
+    <p>聊天记录</p>
+    <p>聊天记录</p>
+    <p>聊天记录</p>
+    <p>聊天记录</p>
+    <p>聊天记录</p>
+    <p>聊天记录</p>
+    <p>聊天记录</p>
+    <p>聊天记录</p>
+    <p>聊天记录</p>
+    <p>聊天记录</p>
+    <p>聊天记录</p>
+    <p>聊天记录</p>
+    <p>聊天记录</p>
+    <p>聊天记录</p>
+    <p>聊天记录</p>
+    <p>聊天记录</p>
+    <p>聊天记录</p>
+    <p>聊天记录</p>
+    <p>聊天记录</p>
+    <p>聊天记录</p>
+    <p>聊天记录</p>
+    <p>聊天记录</p>
+    <p>聊天记录</p>
+    <p>聊天记录</p>
+    <p>聊天记录</p>
+    <p>聊天记录</p>
   </div>
 
   <!--输入栏-->
-  <div class="chat-content-bottom">
+  <div class="chat-content-bottom" #chatContentBottom>
     <div class="chat-content-bottom-toolbar">
       <em class="icon-emoji"></em>
       <em class="icon-picture"></em>

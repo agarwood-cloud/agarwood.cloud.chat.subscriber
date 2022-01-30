@@ -1,5 +1,9 @@
 @import "src/app/@shared/styles/common.scss";
 
+.chat-content-record {
+  overflow: auto;
+}
+
 .chat-content-bottom {
   position: absolute;
   right: 0;

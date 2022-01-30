@@ -1,4 +1,11 @@
-import { Component, Input, OnInit } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  HostListener,
+  Input,
+  OnInit,
+  ViewChild
+} from '@angular/core';
 import * as dayjs from 'dayjs';
 import { ToastService } from 'ng-devui/toast';
 import { ChatSocketService } from '../services/chat-socket.service';
@@ -22,6 +29,46 @@ export class ChatContentComponent implements OnInit {
   public messageContent: string;
 
   /**
+   * chat header height
+   */
+  public chatContentHeaderHeight: number = 0;
+
+  /**
+   * message content height
+   */
+  public chatContentRecordHeight: number = 0;
+
+  /**
+   * bottom of message content height
+   */
+  public chatContentBottomHeight: number = 0;
+
+  /**
+   * Get chatContentHeader DOM element
+   */
+  @ViewChild('chatContentHeader')
+  public set chatContentHeader (chatContentHeaderDom: ElementRef) {
+    if (chatContentHeaderDom && chatContentHeaderDom.nativeElement) {
+      this.chatContentHeaderHeight = chatContentHeaderDom.nativeElement.offsetHeight;
+    }
+  }
+
+  /**
+   * Get chatContentBottom DOM element
+   */
+  @ViewChild('chatContentBottom')
+  public set chatContentBottom (chatContentBottomDom: ElementRef) {
+    if (chatContentBottomDom && chatContentBottomDom.nativeElement) {
+      this.chatContentBottomHeight = chatContentBottomDom.nativeElement.offsetHeight;
+
+      // set chatContentRecordHeight
+      setTimeout(() => {
+        this.chatContentRecordHeight = this.contentHeight - this.chatContentHeaderHeight - this.chatContentBottomHeight;
+      }, 100);
+    }
+  }
+
+  /**
    * constructor
    *
    * @param chatSocket ChatSocketService
@@ -31,12 +78,22 @@ export class ChatContentComponent implements OnInit {
   public constructor (
       private readonly chatSocket: ChatSocketService,
       private readonly toast: ToastService,
-      public activeUser: ActiveUserService
+      public activeUser: ActiveUserService = null
   ) {
   }
 
   public ngOnInit (): void {
-    console.log('ChatContentComponent');
+    console.log('ChatContentComponent--ngOnInit');
+  }
+
+  /**
+   * Setting Sidebar Height
+   */
+  @HostListener('window:resize', ['$event'])
+  public setChatContentHeight (): void {
+    setTimeout(() => {
+      this.chatContentRecordHeight = this.contentHeight - this.chatContentHeaderHeight - this.chatContentBottomHeight;
+    }, 100);
   }
 
   /**
@@ -107,7 +164,7 @@ export class ChatContentComponent implements OnInit {
    *
    * @param event
    */
-  public keyUp (event) {
+  public keyUp (event): void {
     if (event.keyCode === 13) {
       this.sendMessage();
     }
@@ -118,7 +175,7 @@ export class ChatContentComponent implements OnInit {
    *
    * @param event
    */
-  public keyDown (event) {
+  public keyDown (event): void {
     if (event.keyCode === 13) {
       event.preventDefault();
     }

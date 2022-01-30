@@ -180,8 +180,8 @@ export class ChatSidebarComponent implements OnInit, AfterViewInit {
                     | ImageMessage) => {
           this.lastMessage.forEach((item: LastMessage, index: number) => {
             if (
-                // 如果是客服发的消息
-                (message.sender === 'customer' && item.openid === message.toUserName) ||
+            // 如果是客服发的消息
+              (message.sender === 'customer' && item.openid === message.toUserName) ||
                 // 如果是用户发的消息
                 (message.sender === 'user' && item.openid === message.fromUserId)
             ) {
@@ -212,7 +212,6 @@ export class ChatSidebarComponent implements OnInit, AfterViewInit {
               this.lastMessageTop(index, this.lastMessage);
             }
           });
-
 
           // 如果openid不存在 todo: 待测试
           const filter = this.lastMessage.filter((item: LastMessage) => {
