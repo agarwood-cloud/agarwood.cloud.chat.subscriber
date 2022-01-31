@@ -1,0 +1,35 @@
+<div class="chat-content-sender">
+    <d-row>
+        <d-col [dSpan]="20" [dOffset]="2">
+            <div class="chat-content-sender-text">
+                <div class="chat-content-sender-nickname">
+                    <span class="chat-content-sender-time">
+                        {{ '2022-01-11 13:30:34' }}
+                    </span>
+                    <span>昵称</span>
+                </div>
+                <div class="chat-content-sender-text-message-content">
+                    消息的内容消息的内容消息的内容消息的内容消息的内容消息的内容消息的内容消息的内容消息的内容消息的内容消息的内
+                    容消息的内容消息的内容消息的内容消息的内容消息的内容消息的内容消息的内容消息的内容消息的内容消息的内容
+                </div>
+                <div class="chat-content-sender-voice-message-content">
+                    <img src="assets/voice.gif" alt="play voice" *ngIf="isPlayVoice" />
+                    <img src="assets/voice.png" alt="play voice" *ngIf="!isPlayVoice" />
+                </div>
+                <div class="chat-content-sender-image-message-content" dImagePreview>
+                    <img [attr.src]="'https://devui.design/components/assets/image1.png'" style="max-width: 200px" />
+                </div>
+                <div class="chat-content-sender-video-message-content">
+                    <video height="150">
+                        <source src="http://store.cdn.test.yinanshengwu.com/customer/upload/media/user/OwLaaj4bey9cNAgoq9KScbIHGukivXRxuhzNtxlGhlI1n8Kl1fxVPxsbTTl3Udtt.mp4" />
+                    </video>
+                </div>
+            </div>
+        </d-col>
+        <d-col [dSpan]="2">
+            <div class="chat-content-sender-avatar">
+                <d-avatar [gender]="'male'" [name]="'组件头像'"></d-avatar>
+            </div>
+        </d-col>
+    </d-row>
+</div>

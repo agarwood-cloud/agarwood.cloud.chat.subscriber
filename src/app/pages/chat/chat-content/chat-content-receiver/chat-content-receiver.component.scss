@@ -1,0 +1,37 @@
+@import "src/app/@shared/styles/common.scss";
+
+.chat-content-receiver {
+  width: 98%;
+
+  .chat-content-receiver-avatar {
+    margin: 10px;
+    text-align: center;
+  }
+
+  .chat-content-receiver-text {
+    .chat-content-receiver-nickname {
+      font-weight: bold;
+
+      .chat-content-receiver-time {
+        margin-left: 10px;
+        color: $devui-aide-text;
+        font-weight: normal;
+      }
+    }
+  }
+
+  .chat-content-receiver-text-message-content {
+    background-color: $devui-default-bg;
+    border-radius: 5px;
+    padding: 5px;
+  }
+
+
+  .chat-content-receiver-voice-message-content {
+    img {
+      height: 20px;
+      margin: 5px;
+    }
+  }
+}
+
