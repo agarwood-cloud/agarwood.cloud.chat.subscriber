@@ -1,5 +1,15 @@
 @import "src/app/@shared/styles/common.scss";
 
+.chat-content-header {
+  .chat-content-header-nickname {
+    font-weight: bold;
+  }
+
+  .chat-content-header-remark {
+    color: $devui-aide-text;
+  }
+}
+
 .chat-content-record {
   overflow: scroll;
 

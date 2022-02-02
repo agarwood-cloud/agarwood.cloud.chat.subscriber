@@ -38,6 +38,9 @@ export class ChatContentReceiverComponent implements OnInit {
    * @param voice
    */
   public playVoice (voice: string): void {
+    if (!voice) {
+      return;
+    }
     const amr = new BenzAMRRecorder();
     amr.initWithUrl(voice).then(() => {
       this.isPlayVoice = true;

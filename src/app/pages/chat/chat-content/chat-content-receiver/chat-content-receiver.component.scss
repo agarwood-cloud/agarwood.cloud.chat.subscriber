@@ -9,6 +9,10 @@
   }
 
   .chat-content-receiver-text {
+    div {
+      margin-top: 10px;
+    }
+
     .chat-content-receiver-nickname {
       font-weight: bold;
 
@@ -21,9 +25,11 @@
   }
 
   .chat-content-receiver-text-message-content {
-    background-color: $devui-default-bg;
-    border-radius: $devui-border-radius;
-    padding: 5px;
+    span {
+      background-color: $devui-default-bg;
+      border-radius: $devui-border-radius;
+      padding: 5px;
+    }
   }
 
 
@@ -31,6 +37,25 @@
     img {
       height: 20px;
       margin: 5px;
+    }
+  }
+
+  .chat-content-receiver-news-item-message-content {
+    min-width: 200px;
+    max-width: 250px;
+    border-radius: $devui-border-radius;
+    border: 1px solid $devui-line;
+    text-align: left;
+    background-color: $devui-global-bg;
+    overflow: hidden;
+    word-wrap: break-word;
+    text-overflow: ellipsis;
+
+    .chat-content-receiver-news-item-message-content-description {
+      img {
+        padding: 10px;
+        max-width: 100px;
+      }
     }
   }
 }

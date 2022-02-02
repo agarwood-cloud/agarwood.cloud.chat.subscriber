@@ -9,11 +9,11 @@
           <d-avatar style="text-align: right" [gender]="'Female'" [name]="'组件头像'"></d-avatar>
         </d-col>
         <d-col [dSpan]="16">
-          <div>
+          <div class="chat-content-header-nickname">
             <span>{{ activeUser.user.nickname || activeUser.user.openid }}</span>
             <d-tag style="padding-left: 10px" [tag]="'女'" [labelStyle]="'red-w98'"></d-tag>
           </div>
-          <div>备注</div>
+          <div class="chat-content-header-remark">备注</div>
         </d-col>
         <d-col [dSpan]="6">
           转移会话

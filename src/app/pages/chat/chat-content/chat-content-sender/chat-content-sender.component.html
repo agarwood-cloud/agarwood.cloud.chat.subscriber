@@ -10,7 +10,7 @@
                 </div>
                 <!--文字-->
                 <div class="chat-content-sender-text-message-content" *ngIf="message.msgType === 'text.message'">
-                    {{ message.data.content }}
+                    <span>{{ message.data.content }}</span>
                 </div>
                 <!--声音-->
                 <div
@@ -31,7 +31,7 @@
                 </div>
                 <!--视频-->
                 <div class="chat-content-sender-video-message-content" *ngIf="message.msgType === 'video.message'">
-                    <video height="150" width="200" controls="controls">
+                    <video width="200" controls="controls">
                         <source [src]="message.data.videoUrl" />
                     </video>
                 </div>

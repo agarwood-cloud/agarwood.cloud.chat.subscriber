@@ -1,35 +1,59 @@
 <div class="chat-content-receiver">
-    <d-row>
-        <d-col [dSpan]="2">
-            <div class="chat-content-receiver-avatar">
-                <d-avatar [gender]="'Female'" [name]="'组件头像'"></d-avatar>
-            </div>
-        </d-col>
-        <d-col [dSpan]="20">
-            <div class="chat-content-receiver-text">
-                <div class="chat-content-receiver-nickname">
-                    <span>昵称</span>
-                    <span class="chat-content-receiver-time">
-                        {{ '2022-01-11 13:30:34' }}
-                    </span>
-                </div>
-                <div class="chat-content-receiver-text-message-content">
-                    消息的内容消息的内容消息的内容消息的内容消息的内容消息的内容消息的内容消息的内容消息的内容消息的内容消息的内
-                    容消息的内容消息的内容消息的内容消息的内容消息的内容消息的内容消息的内容消息的内容消息的内容消息的内容
-                </div>
-                <div class="chat-content-receiver-voice-message-content">
-                    <img src="assets/voice.gif" alt="play voice" *ngIf="isPlayVoice" />
-                    <img src="assets/voice.png" alt="play voice" *ngIf="!isPlayVoice" />
-                </div>
-                <div class="chat-content-receiver-image-message-content" dImagePreview>
-                    <img [attr.src]="'https://devui.design/components/assets/image1.png'" style="max-width: 200px" />
-                </div>
-                <div class="chat-content-receiver-video-message-content">
-                    <video height="150">
-                        <source src="http://store.cdn.test.yinanshengwu.com/customer/upload/media/user/OwLaaj4bey9cNAgoq9KScbIHGukivXRxuhzNtxlGhlI1n8Kl1fxVPxsbTTl3Udtt.mp4" />
-                    </video>
-                </div>
-            </div>
-        </d-col>
-    </d-row>
+  <d-row>
+    <d-col [dSpan]="2">
+      <div class="chat-content-receiver-avatar">
+        <d-avatar [gender]="'Female'" [name]="'组件头像'"></d-avatar>
+      </div>
+    </d-col>
+    <d-col [dSpan]="20">
+      <div class="chat-content-receiver-text">
+        <div class="chat-content-receiver-nickname">
+          <span>{{ user.nickname || user.openid }}</span>
+          <span class="chat-content-receiver-time">
+              {{ message.createdAt }}
+          </span>
+        </div>
+        <div class="chat-content-receiver-text-message-content">
+            <span>{{ message.data.content }}</span>
+        </div>
+        <div
+            *ngIf="message.msgType === 'voice.message'"
+            (click)="playVoice(message.data.voiceUrl)"
+            class="chat-content-receiver-voice-message-content"
+        >
+          <img src="assets/voice.gif" alt="play voice" *ngIf="isPlayVoice"/>
+          <img src="assets/voice.png" alt="play voice" *ngIf="!isPlayVoice"/>
+        </div>
+        <div
+            *ngIf="message.msgType === 'image.message'"
+            dImagePreview
+            class="chat-content-receiver-image-message-content"
+        >
+          <img [attr.src]="message.data.imageUrl" style="max-width: 200px"/>
+        </div>
+        <div class="chat-content-receiver-video-message-content" *ngIf="message.msgType === 'video.message'">
+          <video width="200px" controls="controls">
+            <source [src]="message.data.videoUrl">
+          </video>
+        </div>
+
+        <!--图文链接-->
+        <div class="chat-content-receiver-news-item-message-content" *ngIf="message.msgType === 'news.item.message'">
+          <div class="chat-content-receiver-news-item-message-content-title">
+            {{ message.data.title }}
+          </div>
+          <div class="chat-content-receiver-news-item-message-content-description">
+            <d-row>
+              <d-col [dSpan]="12">
+                {{ message.data.description }}
+              </d-col>
+              <d-col [dSpan]="12">
+                <img [attr.src]="message.data.imageUrl" />
+              </d-col>
+            </d-row>
+          </div>
+        </div>
+      </div>
+    </d-col>
+  </d-row>
 </div>

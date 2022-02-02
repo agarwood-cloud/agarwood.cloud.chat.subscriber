@@ -29,11 +29,12 @@
     }
 
     .chat-content-sender-text-message-content {
-      background-color: violet;
-      color: white;
-      border-radius:$devui-border-radius;
-      padding: 5px;
-      width: auto;
+      span {
+        background-color: violet;
+        color: white;
+        border-radius:$devui-border-radius;
+        padding: 5px;
+      }
     }
 
     .chat-content-sender-voice-message-content {
