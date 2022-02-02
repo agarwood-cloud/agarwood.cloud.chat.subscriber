@@ -24,9 +24,26 @@
   </div>
 
   <!--聊天记录-->
-  <div class="chat-content-record" [style.height.px]="chatContentRecordHeight">
-    <app-chat-content-receiver></app-chat-content-receiver>
-    <app-chat-content-sender></app-chat-content-sender>
+  <div
+      [style.height.px]="chatContentRecordHeight"
+      #chatContentRecord
+      class="chat-content-record"
+  >
+    <div class="chat-content-record-tips">
+      没有更多的消息...
+    </div>
+    <div *ngFor="let message of chatMessage">
+      <!-- 接收消息的格式 -->
+      <app-chat-content-receiver
+         [user]="activeUser.user"
+         [message]="message"
+         *ngIf="message.sender === 'user'"
+      ></app-chat-content-receiver>
+      <app-chat-content-sender
+          [message]="message"
+          *ngIf="message.sender === 'customer'"
+      ></app-chat-content-sender>
+    </div>
   </div>
 
   <!--输入栏-->

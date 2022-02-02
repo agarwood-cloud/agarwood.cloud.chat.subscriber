@@ -2,20 +2,27 @@
  * @name ChatMessage
  */
 export interface ChatMessage {
-  id: string;
+  id: string|number;
   openid: string;
-  customerId: string;
+  customerId: string|number;
   sender: string;
   msgType: string;
   data: {
-    content: string;
+    content?: string;
+    newsItemUrl?: string;
+    imageUrl?: string;
+    voiceUrl?: string;
+    videoUrl?: string;
+    title?: string;
+    description?: string;
   },
   createdAt: string;
   isRead: boolean;
+  noReadNum: number;
 }
 
 /**
- * @name ChatMessage
+ * @name LastMessage
  */
 export interface LastMessage {
   id: string | number;

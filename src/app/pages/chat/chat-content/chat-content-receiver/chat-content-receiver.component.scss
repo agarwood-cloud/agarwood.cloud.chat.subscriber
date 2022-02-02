@@ -22,7 +22,7 @@
 
   .chat-content-receiver-text-message-content {
     background-color: $devui-default-bg;
-    border-radius: 5px;
+    border-radius: $devui-border-radius;
     padding: 5px;
   }
 

@@ -1,7 +1,13 @@
 @import "src/app/@shared/styles/common.scss";
 
 .chat-content-record {
-  overflow: auto;
+  overflow: scroll;
+
+  .chat-content-record-tips {
+    text-align: center;
+    margin: 20px;
+    color: $devui-aide-text;
+  }
 }
 
 .chat-content-bottom {

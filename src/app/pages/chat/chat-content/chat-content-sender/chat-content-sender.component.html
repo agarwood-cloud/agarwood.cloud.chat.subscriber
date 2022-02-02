@@ -4,25 +4,52 @@
             <div class="chat-content-sender-text">
                 <div class="chat-content-sender-nickname">
                     <span class="chat-content-sender-time">
-                        {{ '2022-01-11 13:30:34' }}
+                        {{ message.createdAt }}
                     </span>
-                    <span>昵称</span>
+                    <span>{{ customer.username }}</span>
                 </div>
-                <div class="chat-content-sender-text-message-content">
-                    消息的内容消息的内容消息的内容消息的内容消息的内容消息的内容消息的内容消息的内容消息的内容消息的内容消息的内
-                    容消息的内容消息的内容消息的内容消息的内容消息的内容消息的内容消息的内容消息的内容消息的内容消息的内容
+                <!--文字-->
+                <div class="chat-content-sender-text-message-content" *ngIf="message.msgType === 'text.message'">
+                    {{ message.data.content }}
                 </div>
-                <div class="chat-content-sender-voice-message-content">
+                <!--声音-->
+                <div
+                    (click)="playVoice(message.data?.voiceUrl)"
+                    *ngIf="message.msgType === 'voice.message'"
+                    class="chat-content-sender-voice-message-content"
+                >
                     <img src="assets/voice.gif" alt="play voice" *ngIf="isPlayVoice" />
                     <img src="assets/voice.png" alt="play voice" *ngIf="!isPlayVoice" />
                 </div>
-                <div class="chat-content-sender-image-message-content" dImagePreview>
-                    <img [attr.src]="'https://devui.design/components/assets/image1.png'" style="max-width: 200px" />
+                <!--图片-->
+                <div
+                    class="chat-content-sender-image-message-content"
+                    dImagePreview
+                    *ngIf="message.msgType === 'image.message'"
+                >
+                    <img [attr.src]="message.data.imageUrl" />
                 </div>
-                <div class="chat-content-sender-video-message-content">
-                    <video height="150">
-                        <source src="http://store.cdn.test.yinanshengwu.com/customer/upload/media/user/OwLaaj4bey9cNAgoq9KScbIHGukivXRxuhzNtxlGhlI1n8Kl1fxVPxsbTTl3Udtt.mp4" />
+                <!--视频-->
+                <div class="chat-content-sender-video-message-content" *ngIf="message.msgType === 'video.message'">
+                    <video height="150" width="200" controls="controls">
+                        <source [src]="message.data.videoUrl" />
                     </video>
+                </div>
+                <!--图文链接-->
+                <div class="chat-content-sender-news-item-message-content" *ngIf="message.msgType === 'news.item.message'">
+                    <div class="chat-content-sender-news-item-message-content-title">
+                        {{ message.data.title }}
+                    </div>
+                    <div class="chat-content-sender-news-item-message-content-description">
+                        <d-row>
+                            <d-col [dSpan]="12">
+                                {{ message.data.description }}
+                            </d-col>
+                            <d-col [dSpan]="12">
+                                <img [attr.src]="message.data.imageUrl" />
+                            </d-col>
+                        </d-row>
+                    </div>
                 </div>
             </div>
         </d-col>

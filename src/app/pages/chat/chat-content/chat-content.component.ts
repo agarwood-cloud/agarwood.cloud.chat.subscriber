@@ -10,6 +10,8 @@ import * as dayjs from 'dayjs';
 import { ToastService } from 'ng-devui/toast';
 import { ChatSocketService } from '../services/chat-socket.service';
 import { ActiveUserService } from '../services/active-user.service';
+import { ChatMessage } from '../services/interfaces/chat-message';
+import { ImageMessage, NewsItemMessage, TextMessage, VideoMessage, VoiceMessage } from '../services/interfaces/message';
 
 @Component({
   selector: 'app-chat-content',
@@ -44,6 +46,11 @@ export class ChatContentComponent implements OnInit {
   public chatContentBottomHeight: number = 0;
 
   /**
+   * user message content list
+   */
+  public chatMessage: ChatMessage[] = [];
+
+  /**
    * Get chatContentHeader DOM element
    */
   @ViewChild('chatContentHeader')
@@ -69,6 +76,18 @@ export class ChatContentComponent implements OnInit {
   }
 
   /**
+   * Scroll to bottom
+   *
+   * @param chatContentRecordDom
+   */
+  @ViewChild('chatContentRecord')
+  public set chatContentRecord (chatContentRecordDom: ElementRef) {
+    if (chatContentRecordDom && chatContentRecordDom.nativeElement) {
+      chatContentRecordDom.nativeElement.scrollTop = chatContentRecordDom.nativeElement.scrollHeight;
+    }
+  }
+
+  /**
    * constructor
    *
    * @param chatSocket ChatSocketService
@@ -83,7 +102,7 @@ export class ChatContentComponent implements OnInit {
   }
 
   public ngOnInit (): void {
-    console.log('ChatContentComponent--ngOnInit');
+    this.listenMessage();
   }
 
   /**
@@ -179,5 +198,86 @@ export class ChatContentComponent implements OnInit {
     if (event.keyCode === 13) {
       event.preventDefault();
     }
+  }
+
+  /**
+   * listener socket message
+   */
+  public listenMessage (): void {
+    // listen socket event (such as: text.message)
+    const socketEvent = [
+      'text.message',
+      'image.message',
+      'voice.message',
+      'video.message',
+      'file.message',
+      'location.message',
+      'news.item.message'
+    ];
+    socketEvent.forEach(event => {
+      this.chatSocket.socket.on(event,
+        (message:
+               | TextMessage
+               | VoiceMessage
+               | VideoMessage
+               | NewsItemMessage
+               | ImageMessage) => {
+          // set openid and customerId
+          const openid = message.sender === 'user' ? message.fromUserId : message.toUserName;
+          const customerId = message.sender === 'user' ? message.toUserName : message.fromUserId;
+
+          const content: ChatMessage = {
+            id: message.id,
+            openid: openid,
+            customerId: customerId,
+            msgType: '',
+            sender: message.sender,
+            data: {},
+            createdAt: message.createdAt,
+            isRead: this.activeUser.user.openid === openid,
+            noReadNum: 0 // todo, 这里要计算未读消息数量
+          };
+
+          if (message.msgType === 'text.message') {
+            content.msgType = 'text.message';
+            content.data.content = message.content;
+          }
+
+          if (message.msgType === 'image.message') {
+            content.msgType = 'image.message';
+            content.data = {
+              imageUrl: message.imageUrl
+            };
+          }
+
+          if (message.msgType === 'voice.message') {
+            content.msgType = 'voice.message';
+            content.data = {
+              voiceUrl: message.voiceUrl
+            };
+          }
+
+          if (message.msgType === 'video.message') {
+            content.msgType = 'video.message';
+            content.data = {
+              videoUrl: message.videoUrl,
+              title: message.title,
+              description: message.description
+            };
+          }
+
+          if (message.msgType === 'news.item.message') {
+            content.msgType = 'news.item.message';
+            content.data = {
+              title: message.title,
+              description: message.description,
+              imageUrl: message.imageUrl,
+              newsItemUrl: message.newsItemUrl
+            };
+          }
+
+          this.chatMessage.push(content);
+        });
+    });
   }
 }

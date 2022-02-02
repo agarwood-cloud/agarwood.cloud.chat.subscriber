@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import BenzAMRRecorder from "benz-amr-recorder";
+import { Component, Input, OnInit } from '@angular/core';
+import BenzAMRRecorder from 'benz-amr-recorder';
+import { ChatMessage } from '../../services/interfaces/chat-message';
+import { Customer } from '../../services/interfaces/customer';
 
 @Component({
   selector: 'app-chat-content-sender',
@@ -7,15 +9,30 @@ import BenzAMRRecorder from "benz-amr-recorder";
   styleUrls: ['./chat-content-sender.component.scss']
 })
 export class ChatContentSenderComponent implements OnInit {
-
   /**
    * play audio or not
    */
   public isPlayVoice: boolean = false;
 
-  public constructor() { }
+  /**
+   * message
+   */
+  @Input()
+  public message: ChatMessage;
 
-  public ngOnInit(): void {
+  /**
+   * customer
+   */
+  public customer: Customer;
+
+  public constructor () {
+    const userInfo = localStorage.getItem('userInfo');
+    if (userInfo) {
+      this.customer = JSON.parse(userInfo);
+    }
+  }
+
+  public ngOnInit (): void {
   }
 
   /**
@@ -23,7 +40,10 @@ export class ChatContentSenderComponent implements OnInit {
    *
    * @param voice
    */
-  public playVoice(voice: string): void {
+  public playVoice (voice: string): void {
+    if (!voice) {
+      return;
+    }
     const amr = new BenzAMRRecorder();
     amr.initWithUrl(voice).then(() => {
       this.isPlayVoice = true;
@@ -32,7 +52,6 @@ export class ChatContentSenderComponent implements OnInit {
     amr.onEnded(() => {
       this.isPlayVoice = false;
       console.log('播放结束');
-    })
+    });
   }
-
 }

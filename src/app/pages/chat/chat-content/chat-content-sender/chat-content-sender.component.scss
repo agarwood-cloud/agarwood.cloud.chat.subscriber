@@ -7,6 +7,10 @@
   .chat-content-sender-text {
     float: right;
 
+    div {
+      margin-top: 10px;
+    }
+
     .chat-content-sender-avatar {
       margin-right: 20px;
       text-align: left;
@@ -18,24 +22,58 @@
       font-weight: bold;
 
       .chat-content-sender-time {
-        margin-left: 10px;
+        margin-right: 10px;
         color: $devui-aide-text;
         font-weight: normal;
       }
     }
-  }
 
-  .chat-content-sender-text-message-content {
-    background-color: violet;
-    color: white;
-    border-radius: 5px;
-    padding: 5px;
-  }
+    .chat-content-sender-text-message-content {
+      background-color: violet;
+      color: white;
+      border-radius:$devui-border-radius;
+      padding: 5px;
+      width: auto;
+    }
 
-  .chat-content-sender-voice-message-content {
-    img {
-      height: 20px;
-      margin: 5px;
+    .chat-content-sender-voice-message-content {
+
+      &:hover {
+        cursor: pointer;
+      }
+
+      img {
+        transform: rotate(180deg);
+        height: 20px;
+        margin: 5px;
+      }
+    }
+
+    .chat-content-sender-image-message-content {
+
+      img {
+        max-width: 200px;
+      }
+    }
+
+    .chat-content-sender-news-item-message-content {
+      padding: 10px;
+      min-width: 200px;
+      max-width: 250px;
+      border-radius: $devui-border-radius;
+      border: 1px solid $devui-line;
+      text-align: left;
+      background-color: $devui-global-bg;
+      overflow: hidden;
+      word-wrap: break-word;
+      text-overflow: ellipsis;
+
+      .chat-content-sender-news-item-message-content-description {
+        img {
+          padding: 10px;
+          max-width: 100px;
+        }
+      }
     }
   }
 }
