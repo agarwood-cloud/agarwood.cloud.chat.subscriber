@@ -1,5 +1,6 @@
 import { Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
 import { ChatSocketService } from './services/chat-socket.service';
+import { ActiveUserService } from './services/active-user.service';
 
 @Component({
   selector: 'app-chat',
@@ -8,11 +9,6 @@ import { ChatSocketService } from './services/chat-socket.service';
   styleUrls: ['./chat.component.scss']
 })
 export class ChatComponent implements OnInit {
-  /**
-   * @private
-   */
-  private readonly socket: ChatSocketService;
-
   /**
    * set sidebar height
    */
@@ -27,9 +23,10 @@ export class ChatComponent implements OnInit {
   /**
    * constructor
    */
-  public constructor (socket: ChatSocketService) {
-    this.socket = socket;
-
+  public constructor (
+      private readonly socket: ChatSocketService,
+      public activeUser: ActiveUserService
+  ) {
     // Getting ScreenSize
     this.getScreenSize();
 

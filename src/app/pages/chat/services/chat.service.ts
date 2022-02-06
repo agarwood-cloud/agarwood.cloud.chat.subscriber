@@ -64,4 +64,20 @@ export class ChatService {
   public getUser (): Observable<any> {
     return this.http.get('/user-center/official-account/v3/user');
   }
+
+  /**
+   * Get Chat Record Message For User
+   *
+   * @param openid
+   * @param page
+   * @param perPage
+   */
+  public getChatRecord (openid: string, page: number = 1, perPage: number = 20): Observable<any> {
+    return this.http.get(`/user-center/official-account/v3/chat/chat-record/${openid}`, {
+      params: {
+        page: page,
+        perPage: perPage
+      }
+    });
+  }
 }
