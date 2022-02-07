@@ -23,30 +23,30 @@ export class ChatService {
   /**
    * Get chat messages for list
    *
-   * @returns {Observable<any>}
+   * @returns {Observable<Object>}
    */
-  public getChatList (): Observable<any> {
+  public getChatList (): Observable<Object> {
     return this.http.get('/user-center/official-account/v3/chat/chat-list');
   }
 
   /**
    * Get customer fans group for detail
    */
-  public getCustomerServiceGroup (): Observable<any> {
+  public getCustomerServiceGroup (): Observable<Object> {
     return this.http.get('/user-center/customer/v3/user-group-for-customer');
   }
 
   /**
    * Get customer fans group for detail
    */
-  public getCustomerServiceGroupDetail (id: number): Observable<any> {
+  public getCustomerServiceGroupDetail (id: number): Observable<Object> {
     return this.http.get(`/user-center/customer/v3/user-group-for-customer/${id}`);
   }
 
   /**
    * Create customer fans group
    */
-  public postCustomerServiceGroup (data: any): Observable<any> {
+  public postCustomerServiceGroup (data: any): Observable<Object> {
     // todo data type
     return this.http.post('/user-center/customer/v3/user-group-for-customer', data);
   }
@@ -54,14 +54,14 @@ export class ChatService {
   /**
    * Delete customer fans group
    */
-  public deleteCustomerServiceGroup (id: number): Observable<any> {
+  public deleteCustomerServiceGroup (id: number): Observable<Object> {
     return this.http.delete(`/user-center/customer/v3/user-group-for-customer/${id}`);
   }
 
   /**
    * Get User Info
    */
-  public getUser (): Observable<any> {
+  public getUser (): Observable<Object> {
     return this.http.get('/user-center/official-account/v3/user');
   }
 
@@ -72,7 +72,7 @@ export class ChatService {
    * @param page
    * @param perPage
    */
-  public getChatRecord (openid: string, page: number = 1, perPage: number = 20): Observable<any> {
+  public getChatRecord (openid: string, page: number = 1, perPage: number = 20): Observable<Object> {
     return this.http.get(`/user-center/official-account/v3/chat/chat-record/${openid}`, {
       params: {
         page: page,

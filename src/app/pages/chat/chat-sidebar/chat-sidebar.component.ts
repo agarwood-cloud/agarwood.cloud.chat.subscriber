@@ -6,6 +6,7 @@ import { LastMessage } from '../services/interfaces/chat-message';
 import { User } from '../services/interfaces/user';
 import { ActiveUserService } from '../services/active-user.service';
 import { ImageMessage, NewsItemMessage, TextMessage, VideoMessage, VoiceMessage } from '../services/interfaces/message';
+import { Result } from '../services/interfaces/result';
 
 @Component({
   selector: 'app-chat-sidebar',
@@ -141,7 +142,7 @@ export class ChatSidebarComponent implements OnInit, AfterViewInit {
    * @public
    */
   public getChatList (): void {
-    this.chatService.getChatList().subscribe(chatList => {
+    this.chatService.getChatList().subscribe((chatList: Result<LastMessage>) => {
       this.lastMessage = chatList.data;
     });
   }
@@ -222,7 +223,7 @@ export class ChatSidebarComponent implements OnInit, AfterViewInit {
             }
           });
           if (filter.length === 0) {
-            this.chatService.getUser().subscribe(user => {
+            this.chatService.getUser().subscribe((user: Result<User>) => {
               let lastContent: string;
               if (message.msgType === 'text.message') {
                 lastContent = message.content;

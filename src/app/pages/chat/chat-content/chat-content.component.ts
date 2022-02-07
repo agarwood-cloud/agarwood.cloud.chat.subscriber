@@ -321,7 +321,7 @@ export class ChatContentComponent implements OnInit {
   @HostListener('window:scroll', ['$event'])
   public loadMoreChatMessage (event?: Event): void {
     // client Height
-    const clientHeight = window.innerHeight
+    const clientHeight = window.innerHeight;
     console.log('clientHeight', clientHeight);
 
     // body height
@@ -336,7 +336,7 @@ export class ChatContentComponent implements OnInit {
     if (bodyHeight - clientHeight - scrollTop < 10) {
       // if (!this.flag) {
       console.log('翻页');
-      //翻页
+      // 翻页
       // this.getChatRecordMessage(this.activeUser.user.openid, 2, 20);
       // }
     }

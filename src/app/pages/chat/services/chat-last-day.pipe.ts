@@ -11,7 +11,7 @@ export class ChatLastDayPipe implements PipeTransform {
    * @param value
    * @param args
    */
-  transform (value: string, ...args: string[]): string {
+  public transform (value: string, ...args: string[]): string {
     if (dayjs(value).format('YYYY-MM-DD') === dayjs().format('YYYY-MM-DD')) {
       return dayjs(value).format('HH:mm').toString();
     } else {
