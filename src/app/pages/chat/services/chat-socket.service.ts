@@ -16,16 +16,10 @@ export class ChatSocketService {
   /**
    * @private
    */
-  private readonly http: HttpClient;
-
-  /**
-   * @private
-   */
   private readonly fromUserId: string = '';
 
   // init socket.io
-  public constructor (http: HttpClient) {
-    this.http = http;
+  public constructor (private readonly http: HttpClient) {
 
     // init socket.io
     this.socketLogin(ChatSocketService.getFromUserId());
@@ -202,7 +196,7 @@ export class ChatSocketService {
    *
    * @param image FormData
    */
-  public uploadImage (image: FormData): Observable<any> {
+  public uploadImage (image: FormData): Observable<Object> {
     return this.http.post('/user-center/official-account/v3/chat/upload-image', image);
   }
 }

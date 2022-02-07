@@ -7,17 +7,11 @@ import { Observable } from 'rxjs';
 })
 export class ChatService {
   /**
-   * @private
-   */
-  private readonly http: HttpClient;
-
-  /**
    * Constructor
    *
    * @param http
    */
-  public constructor (http: HttpClient) {
-    this.http = http;
+  public constructor (private readonly http: HttpClient) {
   }
 
   /**
