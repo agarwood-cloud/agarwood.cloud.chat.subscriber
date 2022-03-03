@@ -8,7 +8,7 @@ export interface ListResult<T> {
 
 export interface Result<T> {
   data: ListResult<T> | any;
-  code: string;
+  code: string | number;
   msg: string;
   subMsg?: string;
   subCode?: string;
