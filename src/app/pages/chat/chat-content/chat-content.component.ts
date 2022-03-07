@@ -31,7 +31,9 @@ export class ChatContentComponent implements OnInit {
    */
   @Input()
   public set activeOpenid (openid: string) {
-    this.getChatRecordMessage(openid);
+    if (openid) {
+      this.getChatRecordMessage(openid);
+    }
   }
 
   /**
