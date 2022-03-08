@@ -51,7 +51,7 @@ export class ChatContentSenderComponent implements OnInit {
     });
     amr.onEnded(() => {
       this.isPlayVoice = false;
-      console.log('播放结束');
+      // console.log('播放结束');
     });
   }
 }

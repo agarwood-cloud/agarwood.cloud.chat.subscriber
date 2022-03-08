@@ -26,13 +26,13 @@ export class ChatSocketService {
   }
 
   /**
-   * Get officialAccountId params
+   * Get platformId params
    *
    * @private
    */
-  private static getOfficialAccountId (): number|string {
+  private static getPlatformId (): number|string {
     // todo
-    return 'string';
+    return 1234567890;
   }
 
   /**
@@ -74,7 +74,7 @@ export class ChatSocketService {
    */
   public sendTextMessage (toUserName: string, content: string): void {
     const message: TextMessage = {
-      officialAccountId: ChatSocketService.getOfficialAccountId(),
+      platformId: ChatSocketService.getPlatformId(),
       toUserName: toUserName,
       fromUserId: ChatSocketService.getFromUserId(),
       createdAt: dayjs().format('YYYY-MM-DD HH:mm:ss').toString(),
@@ -94,7 +94,7 @@ export class ChatSocketService {
    */
   public sendImageMessage (toUserName: string, mediaId: string, imageUrl: string): void {
     const message: ImageMessage = {
-      officialAccountId: ChatSocketService.getOfficialAccountId(),
+      platformId: ChatSocketService.getPlatformId(),
       toUserName: toUserName,
       fromUserId: ChatSocketService.getFromUserId(),
       createdAt: dayjs().format('YYYY-MM-DD HH:mm:ss').toString(),
@@ -132,7 +132,7 @@ export class ChatSocketService {
       fromUserId: ChatSocketService.getFromUserId(),
       mediaId: mediaId,
       msgType: 'video.message',
-      officialAccountId: ChatSocketService.getOfficialAccountId(),
+      platformId: ChatSocketService.getPlatformId(),
       sender: 'customer',
       thumbMediaId: thumbMediaId,
       title: title,
@@ -159,7 +159,7 @@ export class ChatSocketService {
       fromUserId: ChatSocketService.getFromUserId(),
       imageUrl: imageUrl,
       msgType: 'news.item.message',
-      officialAccountId: ChatSocketService.getOfficialAccountId(),
+      platformId: ChatSocketService.getPlatformId(),
       sender: 'customer',
       title: title,
       toUserName: toUserName,
@@ -182,7 +182,7 @@ export class ChatSocketService {
       fromUserId: ChatSocketService.getFromUserId(),
       mediaId: mediaId,
       msgType: 'voice.message',
-      officialAccountId: ChatSocketService.getOfficialAccountId(),
+      platformId: ChatSocketService.getPlatformId(),
       sender: 'customer',
       toUserName: toUserName,
       voiceUrl: voiceUrl

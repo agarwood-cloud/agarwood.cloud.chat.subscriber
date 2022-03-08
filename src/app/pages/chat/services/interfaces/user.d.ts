@@ -1,6 +1,6 @@
 export interface User {
   id: string | number;
-  officialAccountId: string | number;
+  platformId: string | number;
   openid: string;
   customerId: string | number;
   customer: string;

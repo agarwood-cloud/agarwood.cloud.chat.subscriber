@@ -13,7 +13,7 @@ export class ChatSidebarAccordionComponent implements OnInit {
   public constructor () {
     this.user = {
       id: 1111,
-      officialAccountId: 2222,
+      platformId: 2222,
       openid: '123456789',
       customerId: 'customer_id',
       customer: 'customer',

@@ -29,7 +29,7 @@
             dImagePreview
             class="chat-content-receiver-image-message-content"
         >
-          <img [attr.src]="message.data.imageUrl" style="max-width: 200px"/>
+          <img alt="user avatar" [attr.src]="message.data.imageUrl" style="max-width: 200px"/>
         </div>
         <div class="chat-content-receiver-video-message-content" *ngIf="message.msgType === 'video.message'">
           <video width="200px" controls="controls">
@@ -48,7 +48,7 @@
                 {{ message.data.description }}
               </d-col>
               <d-col [dSpan]="12">
-                <img [attr.src]="message.data.imageUrl" />
+                <img alt="image" [attr.src]="message.data.imageUrl" />
               </d-col>
             </d-row>
           </div>

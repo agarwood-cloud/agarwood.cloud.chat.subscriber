@@ -45,7 +45,7 @@ export interface LastMessage {
   // noReadNum: number;
   user: {
     id: string | number;
-    officialAccountId: string | number;
+    platformId: string | number;
     openid: string;
     customerId: string | number;
     customer: string;

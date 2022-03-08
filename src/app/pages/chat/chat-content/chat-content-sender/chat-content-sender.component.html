@@ -1,62 +1,62 @@
 <div class="chat-content-sender">
-    <d-row>
-        <d-col [dSpan]="20" [dOffset]="2">
-            <div class="chat-content-sender-text">
-                <div class="chat-content-sender-nickname">
+  <d-row>
+    <d-col [dSpan]="20" [dOffset]="2">
+      <div class="chat-content-sender-text">
+        <div class="chat-content-sender-nickname">
                     <span class="chat-content-sender-time">
                         {{ message.createdAt }}
                     </span>
-                    <span>{{ customer.username }}</span>
-                </div>
-                <!--文字-->
-                <div class="chat-content-sender-text-message-content" *ngIf="message.msgType === 'text.message'">
-                    <span>{{ message.data.content }}</span>
-                </div>
-                <!--声音-->
-                <div
-                    (click)="playVoice(message.data?.voiceUrl)"
-                    *ngIf="message.msgType === 'voice.message'"
-                    class="chat-content-sender-voice-message-content"
-                >
-                    <img src="assets/voice.gif" alt="play voice" *ngIf="isPlayVoice" />
-                    <img src="assets/voice.png" alt="play voice" *ngIf="!isPlayVoice" />
-                </div>
-                <!--图片-->
-                <div
-                    class="chat-content-sender-image-message-content"
-                    dImagePreview
-                    *ngIf="message.msgType === 'image.message'"
-                >
-                    <img [attr.src]="message.data.imageUrl" />
-                </div>
-                <!--视频-->
-                <div class="chat-content-sender-video-message-content" *ngIf="message.msgType === 'video.message'">
-                    <video width="200" controls="controls">
-                        <source [src]="message.data.videoUrl" />
-                    </video>
-                </div>
-                <!--图文链接-->
-                <div class="chat-content-sender-news-item-message-content" *ngIf="message.msgType === 'news.item.message'">
-                    <div class="chat-content-sender-news-item-message-content-title">
-                        {{ message.data.title }}
-                    </div>
-                    <div class="chat-content-sender-news-item-message-content-description">
-                        <d-row>
-                            <d-col [dSpan]="12">
-                                {{ message.data.description }}
-                            </d-col>
-                            <d-col [dSpan]="12">
-                                <img [attr.src]="message.data.imageUrl" />
-                            </d-col>
-                        </d-row>
-                    </div>
-                </div>
-            </div>
-        </d-col>
-        <d-col [dSpan]="2">
-            <div class="chat-content-sender-avatar">
-                <d-avatar [gender]="'male'" [name]="'组件头像'"></d-avatar>
-            </div>
-        </d-col>
-    </d-row>
+          <span>{{ customer.username }}</span>
+        </div>
+        <!--文字-->
+        <div class="chat-content-sender-text-message-content" *ngIf="message.msgType === 'text.message'">
+          <span>{{ message.data.content }}</span>
+        </div>
+        <!--声音-->
+        <div
+            (click)="playVoice(message.data?.voiceUrl)"
+            *ngIf="message.msgType === 'voice.message'"
+            class="chat-content-sender-voice-message-content"
+        >
+          <img src="assets/voice.gif" alt="play voice" *ngIf="isPlayVoice" />
+          <img src="assets/voice.png" alt="play voice" *ngIf="!isPlayVoice" />
+        </div>
+        <!--图片-->
+        <div
+            class="chat-content-sender-image-message-content"
+            dImagePreview
+            *ngIf="message.msgType === 'image.message'"
+        >
+          <img [attr.src]="message.data.imageUrl" />
+        </div>
+        <!--视频-->
+        <div class="chat-content-sender-video-message-content" *ngIf="message.msgType === 'video.message'">
+          <video width="200" controls="controls">
+            <source [src]="message.data.videoUrl" />
+          </video>
+        </div>
+        <!--图文链接-->
+        <div class="chat-content-sender-news-item-message-content" *ngIf="message.msgType === 'news.item.message'">
+          <div class="chat-content-sender-news-item-message-content-title">
+            {{ message.data.title }}
+          </div>
+          <div class="chat-content-sender-news-item-message-content-description">
+            <d-row>
+              <d-col [dSpan]="12">
+                {{ message.data.description }}
+              </d-col>
+              <d-col [dSpan]="12">
+                <img [attr.src]="message.data.imageUrl" />
+              </d-col>
+            </d-row>
+          </div>
+        </div>
+      </div>
+    </d-col>
+    <d-col [dSpan]="2">
+      <div class="chat-content-sender-avatar">
+        <d-avatar [gender]="'male'" [name]="'组件头像'"></d-avatar>
+      </div>
+    </d-col>
+  </d-row>
 </div>

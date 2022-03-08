@@ -14,8 +14,8 @@ export class HeaderInterceptor implements HttpInterceptor {
   private static addToken (request: HttpRequest<any>, token: string): HttpRequest<any> {
     return request.clone({
       setHeaders: { Authorization: 'Bearer ' + token }
-      // todo add officialAccountId params
-      // params: req.params.set('officialAccountId', 'officialAccountId')
+      // todo add platformId params
+      // params: req.params.set('platformId', 'platformId')
     });
   }
 
