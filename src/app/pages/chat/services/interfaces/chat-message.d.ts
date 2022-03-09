@@ -43,6 +43,7 @@ export interface LastMessage {
   createdAt: string;
   isRead: boolean;
   // noReadNum: number;
+  // todo 每一条消息不需要都带上用户的信息，可以单独获取
   user: {
     id: string | number;
     platformId: string | number;
