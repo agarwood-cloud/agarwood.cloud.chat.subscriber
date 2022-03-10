@@ -1,6 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
 import BenzAMRRecorder from 'benz-amr-recorder';
-import { ImageMessage, TextMessage, VideoMessage, VoiceMessage } from '../../services/interfaces/message';
 import { User } from '../../services/interfaces/user';
 import { ChatMessage } from '../../services/interfaces/chat-message';
 

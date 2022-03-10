@@ -153,8 +153,10 @@ export class ChatSidebarComponent implements OnInit, AfterViewInit {
    * @param user
    */
   public selectUser (user: User): void {
-    this.activeOpenid = user.openid;
+    console.log('selectUser:', this.lastMessage);
     this.activeUser.clickUser(user);
+    this.activeOpenid = user.openid;
+    console.log('activeOpenid:', this.activeOpenid);
   }
 
   /**
@@ -184,7 +186,7 @@ export class ChatSidebarComponent implements OnInit, AfterViewInit {
             // 如果是客服发的消息
               (message.sender === 'customer' && item.openid === message.toUserName) ||
                 // 如果是用户发的消息
-                (message.sender === 'user' && item.openid === message.fromUserId)
+                (message.sender === 'user' && item.openid === message.fromUserName)
             ) {
               if (message.msgType === 'text.message') {
                 item.data.content = message.content;
@@ -219,7 +221,7 @@ export class ChatSidebarComponent implements OnInit, AfterViewInit {
             if (message.sender === 'customer') {
               return item.openid === message.toUserName;
             } else {
-              return item.openid === message.fromUserId;
+              return item.openid === message.fromUserName;
             }
           });
           if (filter.length === 0) {
@@ -242,8 +244,8 @@ export class ChatSidebarComponent implements OnInit, AfterViewInit {
               }
               const isMessage: LastMessage = {
                 id: message.id,
-                openid: message.sender === 'customer' ? message.toUserName : message.fromUserId,
-                customerId: message.sender === 'user' ? message.toUserName : message.fromUserId,
+                openid: message.sender === 'customer' ? message.toUserName : message.fromUserName,
+                customerId: message.sender === 'user' ? message.toUserName : message.fromUserName,
                 sender: message.sender,
                 data: {
                   content: lastContent

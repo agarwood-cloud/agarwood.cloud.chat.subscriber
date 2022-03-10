@@ -31,6 +31,7 @@ export class ChatContentComponent implements OnInit {
    */
   @Input()
   public set activeOpenid (openid: string) {
+    console.log('active openid', openid);
     // reset chat content
     this.chatMessage = [];
     if (openid) {
@@ -249,8 +250,8 @@ export class ChatContentComponent implements OnInit {
                | NewsItemMessage
                | ImageMessage) => {
           // set openid and customerId
-          const openid = message.sender === 'user' ? message.fromUserId : message.toUserName;
-          const customerId = message.sender === 'user' ? message.toUserName : message.fromUserId;
+          const openid = message.sender === 'user' ? message.fromUserName : message.toUserName;
+          const customerId = message.sender === 'user' ? message.toUserName : message.fromUserName;
 
           const content: ChatMessage = {
             id: message.id,

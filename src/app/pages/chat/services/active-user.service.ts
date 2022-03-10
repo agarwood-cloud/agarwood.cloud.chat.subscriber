@@ -9,9 +9,9 @@ export class ActiveUserService {
    * The active user.
    */
   public user: User;
-  public constructor () {
-    console.log('ActiveUserService.constructor()');
-  }
+  // public constructor () {
+  //   console.log('ActiveUserService.constructor()');
+  // }
 
   /**
    * Set the active user.

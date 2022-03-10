@@ -16,13 +16,13 @@ export class ChatSocketService {
   /**
    * @private
    */
-  private readonly fromUserId: string = '';
+  private readonly fromUserName: string = '';
 
   // init socket.io
   public constructor (private readonly http: HttpClient) {
 
     // init socket.io
-    this.socketLogin(ChatSocketService.getFromUserId());
+    this.socketLogin(ChatSocketService.getFromUserName());
   }
 
   /**
@@ -40,12 +40,15 @@ export class ChatSocketService {
    *
    * @private
    */
-  private static getFromUserId (): string {
-    // fromUserId: this.userInfo.id,
+  private static getFromUserName (): string {
+    // fromUserName: this.userInfo.id,
     const userInfo = localStorage.getItem('userInfo');
     if (userInfo) {
       return String(JSON.parse(userInfo).id);
     }
+
+    // clear localStorage
+    // localStorage.clear();
 
     // todo 未登陆的处理
     return '';
@@ -76,7 +79,7 @@ export class ChatSocketService {
     const message: TextMessage = {
       platformId: ChatSocketService.getPlatformId(),
       toUserName: toUserName,
-      fromUserId: ChatSocketService.getFromUserId(),
+      fromUserName: ChatSocketService.getFromUserName(),
       createdAt: dayjs().format('YYYY-MM-DD HH:mm:ss').toString(),
       msgType: 'text.message',
       content: content,
@@ -96,7 +99,7 @@ export class ChatSocketService {
     const message: ImageMessage = {
       platformId: ChatSocketService.getPlatformId(),
       toUserName: toUserName,
-      fromUserId: ChatSocketService.getFromUserId(),
+      fromUserName: ChatSocketService.getFromUserName(),
       createdAt: dayjs().format('YYYY-MM-DD HH:mm:ss').toString(),
       msgType: 'image.message',
       imageUrl: imageUrl,
@@ -129,7 +132,7 @@ export class ChatSocketService {
     const message: VideoMessage = {
       createdAt: dayjs().format('YYYY-MM-DD HH:mm:ss').toString(),
       description: description,
-      fromUserId: ChatSocketService.getFromUserId(),
+      fromUserName: ChatSocketService.getFromUserName(),
       mediaId: mediaId,
       msgType: 'video.message',
       platformId: ChatSocketService.getPlatformId(),
@@ -156,7 +159,7 @@ export class ChatSocketService {
     const message: NewsItemMessage = {
       createdAt: dayjs().format('YYYY-MM-DD HH:mm:ss').toString(),
       description: description,
-      fromUserId: ChatSocketService.getFromUserId(),
+      fromUserName: ChatSocketService.getFromUserName(),
       imageUrl: imageUrl,
       msgType: 'news.item.message',
       platformId: ChatSocketService.getPlatformId(),
@@ -179,7 +182,7 @@ export class ChatSocketService {
   public sendVoiceMessage (toUserName: string, voiceUrl: string, mediaId: string): void {
     const message: VoiceMessage = {
       createdAt: dayjs().format('YYYY-MM-DD HH:mm:ss').toString(),
-      fromUserId: ChatSocketService.getFromUserId(),
+      fromUserName: ChatSocketService.getFromUserName(),
       mediaId: mediaId,
       msgType: 'voice.message',
       platformId: ChatSocketService.getPlatformId(),
