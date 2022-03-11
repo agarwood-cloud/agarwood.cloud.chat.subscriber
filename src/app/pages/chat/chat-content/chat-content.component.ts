@@ -190,11 +190,9 @@ export class ChatContentComponent implements OnInit {
         // reader.readAsText(blob);
 
         this.chatSocket.uploadImage(formData).subscribe((res: any) => {
-          // todo 待加入发送socket 消息
-          // res 的格式为: { data: [{ imageUrl: 'http://xxx.com/xxx.png', mediaInfo: xxx }] }
-
+          // res 的格式为: { data: [{ imageUrl: 'http://xxx.com/xxx.png', mediaInfo: { type: image, item: [], mediaId: xxxx } }] }
           const openid = this.activeUser.user.openid;
-          const mediaId = res.data[0].mediaId;
+          const mediaId = res.data[0].mediaInfo.mediaId;
           const imageUrl = res.data[0].imageUrl;
           this.chatSocket.sendImageMessage(openid, mediaId, imageUrl);
         });

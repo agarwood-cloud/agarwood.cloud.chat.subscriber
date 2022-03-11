@@ -182,6 +182,7 @@ export class ChatSidebarComponent implements OnInit, AfterViewInit {
                     | NewsItemMessage
                     | ImageMessage) => {
           this.lastMessage.forEach((item: LastMessage, index: number) => {
+            // console.log('item.image.message:', message);
             if (
             // 如果是客服发的消息
               (message.sender === 'customer' && item.openid === message.toUserName) ||
@@ -192,6 +193,7 @@ export class ChatSidebarComponent implements OnInit, AfterViewInit {
                 item.data.content = message.content;
               }
               if (message.msgType === 'image.message') {
+                // console.log('image.message:', message);
                 item.data.content = '[图片消息]';
                 item.data.imageUrl = message.imageUrl;
               }
