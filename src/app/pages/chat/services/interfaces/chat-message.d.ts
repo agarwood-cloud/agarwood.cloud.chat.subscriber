@@ -15,6 +15,11 @@ export interface ChatMessage {
     videoUrl?: string;
     title?: string;
     description?: string;
+    url?: string;
+    locationX?: number| string;
+    locationY?: number| string;
+    scale?: string;
+    label?: string;
   },
   createdAt: string;
   isRead: boolean;
@@ -39,6 +44,11 @@ export interface LastMessage {
     videoUrl?: string;
     title?: string;
     description?: string;
+    url?: string;
+    locationX?: number|string;
+    locationY?: number|string;
+    scale?: string;
+    label?: string;
   },
   createdAt: string;
   isRead: boolean;

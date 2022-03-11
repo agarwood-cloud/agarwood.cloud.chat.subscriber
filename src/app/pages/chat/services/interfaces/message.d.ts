@@ -66,3 +66,30 @@ export interface VideoMessage {
   videoUrl: string;
   sender: 'user' | 'customer';
 }
+
+export interface LinkMessage {
+  id?: string | number;
+  platformId: string | number;
+  toUserName: string;
+  fromUserName: string;
+  createdAt: string;
+  msgType: 'link.message' | 'server.link.message';
+  title: string;
+  description: string;
+  url: string;
+  sender: 'user' | 'customer';
+}
+
+export interface LocationMessage {
+  id?: string | number;
+  platformId: string | number;
+  toUserName: string;
+  fromUserName: string;
+  createdAt: string;
+  msgType: 'location.message' | 'server.location.message';
+  locationX: string;
+  locationY: string;
+  scale: string;
+  label: string;
+  sender: 'user' | 'customer';
+}

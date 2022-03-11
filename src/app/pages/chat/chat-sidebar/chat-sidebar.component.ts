@@ -5,7 +5,14 @@ import { ChatService } from '../services/chat.service';
 import { LastMessage } from '../services/interfaces/chat-message';
 import { User } from '../services/interfaces/user';
 import { ActiveUserService } from '../services/active-user.service';
-import { ImageMessage, NewsItemMessage, TextMessage, VideoMessage, VoiceMessage } from '../services/interfaces/message';
+import {
+  ImageMessage,
+  LinkMessage, LocationMessage,
+  NewsItemMessage,
+  TextMessage,
+  VideoMessage,
+  VoiceMessage
+} from '../services/interfaces/message';
 import { Result } from '../services/interfaces/result';
 
 @Component({
@@ -170,6 +177,7 @@ export class ChatSidebarComponent implements OnInit, AfterViewInit {
       'voice.message',
       'video.message',
       'file.message',
+      'link.message',
       'location.message',
       'news.item.message'
     ];
@@ -180,9 +188,12 @@ export class ChatSidebarComponent implements OnInit, AfterViewInit {
                     | VoiceMessage
                     | VideoMessage
                     | NewsItemMessage
-                    | ImageMessage) => {
+                    | ImageMessage
+                    | LinkMessage
+                    | LocationMessage
+        ) => {
           this.lastMessage.forEach((item: LastMessage, index: number) => {
-            // console.log('item.image.message:', message);
+            console.log('item.---.message:', message);
             if (
             // 如果是客服发的消息
               (message.sender === 'customer' && item.openid === message.toUserName) ||
@@ -210,6 +221,20 @@ export class ChatSidebarComponent implements OnInit, AfterViewInit {
                 item.data.newsItemUrl = message.newsItemUrl;
                 item.data.description = message.description;
                 item.data.title = message.title;
+              }
+              if (message.msgType === 'link.message') {
+                console.log('link.message:', message);
+                item.data.content = '[链接消息]';
+                item.data.title = message.title;
+                item.data.description = message.description;
+                item.data.url = message.url;
+              }
+              if (message.msgType === 'location.message') {
+                item.data.content = '[位置消息]';
+                item.data.locationX = message.locationX;
+                item.data.locationY = message.locationY;
+                item.data.scale = message.scale;
+                item.data.label = message.label;
               }
               item.createdAt = message.createdAt;
 
@@ -243,6 +268,12 @@ export class ChatSidebarComponent implements OnInit, AfterViewInit {
               }
               if (message.msgType === 'news.item.message') {
                 lastContent = '[视频消息]';
+              }
+              if (message.msgType === 'location.message') {
+                lastContent = '[位置消息]';
+              }
+              if (message.msgType === 'link.message') {
+                lastContent = '[链接消息]';
               }
               const isMessage: LastMessage = {
                 id: message.id,

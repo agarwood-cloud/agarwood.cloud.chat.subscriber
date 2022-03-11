@@ -11,7 +11,14 @@ import { ToastService } from 'ng-devui/toast';
 import { ChatSocketService } from '../services/chat-socket.service';
 import { ActiveUserService } from '../services/active-user.service';
 import { ChatMessage } from '../services/interfaces/chat-message';
-import { ImageMessage, NewsItemMessage, TextMessage, VideoMessage, VoiceMessage } from '../services/interfaces/message';
+import {
+  ImageMessage,
+  LinkMessage, LocationMessage,
+  NewsItemMessage,
+  TextMessage,
+  VideoMessage,
+  VoiceMessage
+} from '../services/interfaces/message';
 import { ChatService } from '../services/chat.service';
 
 @Component({
@@ -236,6 +243,7 @@ export class ChatContentComponent implements OnInit {
       'voice.message',
       'video.message',
       'file.message',
+      'link.message',
       'location.message',
       'news.item.message'
     ];
@@ -246,7 +254,10 @@ export class ChatContentComponent implements OnInit {
                | VoiceMessage
                | VideoMessage
                | NewsItemMessage
-               | ImageMessage) => {
+               | ImageMessage
+               | LinkMessage
+               | LocationMessage
+        ) => {
           // set openid and customerId
           const openid = message.sender === 'user' ? message.fromUserName : message.toUserName;
           const customerId = message.sender === 'user' ? message.toUserName : message.fromUserName;
@@ -298,6 +309,25 @@ export class ChatContentComponent implements OnInit {
               description: message.description,
               imageUrl: message.imageUrl,
               newsItemUrl: message.newsItemUrl
+            };
+          }
+
+          if (message.msgType === 'link.message') {
+            content.msgType = 'link.message';
+            content.data = {
+              title: message.title,
+              description: message.description,
+              url: message.url
+            };
+          }
+
+          if (message.msgType === 'location.message') {
+            content.msgType = 'location.message';
+            content.data = {
+              locationX: message.locationX,
+              locationY: message.locationY,
+              scale: message.scale,
+              label: message.label
             };
           }
 
