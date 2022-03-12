@@ -2,7 +2,7 @@
   <d-row>
     <d-col [dSpan]="2">
       <div class="chat-content-receiver-avatar">
-        <d-avatar [gender]="'Female'" [name]="'组件头像'"></d-avatar>
+        <d-avatar [gender]="'Female'" [name]="user.nickname || user.openid" [imgSrc]="user.headImgUrl"></d-avatar>
       </div>
     </d-col>
     <d-col [dSpan]="20">

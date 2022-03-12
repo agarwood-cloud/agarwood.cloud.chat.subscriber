@@ -42,7 +42,7 @@ export class ChatComponent implements OnInit {
    * It is invoked only once when the directive is instantiated.
    */
   public ngOnInit (): void {
-    console.log('ChatComponent-ngOnInit', this.sidebarHeight);
+    // console.log('ChatComponent-ngOnInit', this.sidebarHeight);
   }
 
   /**
@@ -64,7 +64,7 @@ export class ChatComponent implements OnInit {
   public webNotifications (event?): void {
     // Getting Permission
     Notification.requestPermission().then((result) => {
-      console.log('Getting Permission', result);
+      //console.log('Getting Permission', result);
     });
   }
 }

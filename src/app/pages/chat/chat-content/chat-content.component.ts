@@ -12,6 +12,7 @@ import { ChatSocketService } from '../services/chat-socket.service';
 import { ActiveUserService } from '../services/active-user.service';
 import { ChatMessage } from '../services/interfaces/chat-message';
 import {
+  ErrorMessage,
   ImageMessage,
   LinkMessage, LocationMessage,
   NewsItemMessage,
@@ -38,7 +39,7 @@ export class ChatContentComponent implements OnInit {
    */
   @Input()
   public set activeOpenid (openid: string) {
-    console.log('active openid', openid);
+    // console.log('active openid', openid);
     // reset chat content
     this.chatMessage = [];
     if (openid) {
@@ -137,6 +138,8 @@ export class ChatContentComponent implements OnInit {
 
   public ngOnInit (): void {
     this.listenMessage();
+
+    this.listenErrorMessage();
   }
 
   /**
@@ -337,6 +340,18 @@ export class ChatContentComponent implements OnInit {
   }
 
   /**
+   * Listen socket event (such as: error message)
+   */
+  public listenErrorMessage(): void {
+    this.chatSocket.socket.on('error.message', (message: ErrorMessage) => {
+      // console.log('error.message', message);
+      this.toast.open({
+        value: [{ severity: 'error', summary: 'Error!',  content: message.content }]
+      });
+    });
+  }
+
+  /**
    * Get Chat Message By Openid
    */
   public getChatRecordMessage (openid: string, page: number = 1, perPage: number = 20): void {
@@ -355,24 +370,24 @@ export class ChatContentComponent implements OnInit {
   public loadMoreChatMessage (event?: Event): void {
     // client Height
     const clientHeight = window.innerHeight;
-    console.log('clientHeight', clientHeight);
+    // console.log('clientHeight', clientHeight);
 
     // body height
     const bodyHeight = document.body.clientHeight;
-    console.log('bodyH', bodyHeight);
+    // console.log('bodyH', bodyHeight);
 
     // 滚动的高度
     const scrollTop = document.documentElement.scrollTop;
-    console.log('scrollTop', scrollTop);
+    // console.log('scrollTop', scrollTop);
 
     // 滚动，除了翻页，还要处理滚动条滚动到底部的情况
     if (bodyHeight - clientHeight - scrollTop < 10) {
       // if (!this.flag) {
-      console.log('翻页');
+      // console.log('翻页');
       // 翻页
       // this.getChatRecordMessage(this.activeUser.user.openid, 2, 20);
       // }
     }
-    console.log('loadMoreChatMessage', event);
+    // console.log('loadMoreChatMessage', event);
   }
 }

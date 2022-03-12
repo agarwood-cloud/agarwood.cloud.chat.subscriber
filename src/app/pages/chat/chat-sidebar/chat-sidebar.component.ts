@@ -160,10 +160,10 @@ export class ChatSidebarComponent implements OnInit, AfterViewInit {
    * @param user
    */
   public selectUser (user: User): void {
-    console.log('selectUser:', this.lastMessage);
+    // console.log('selectUser:', this.lastMessage);
     this.activeUser.clickUser(user);
     this.activeOpenid = user.openid;
-    console.log('activeOpenid:', this.activeOpenid);
+    // console.log('activeOpenid:', this.activeOpenid);
   }
 
   /**
@@ -193,7 +193,6 @@ export class ChatSidebarComponent implements OnInit, AfterViewInit {
                     | LocationMessage
         ) => {
           this.lastMessage.forEach((item: LastMessage, index: number) => {
-            console.log('item.---.message:', message);
             if (
             // 如果是客服发的消息
               (message.sender === 'customer' && item.openid === message.toUserName) ||
@@ -223,7 +222,7 @@ export class ChatSidebarComponent implements OnInit, AfterViewInit {
                 item.data.title = message.title;
               }
               if (message.msgType === 'link.message') {
-                console.log('link.message:', message);
+               //  console.log('link.message:', message);
                 item.data.content = '[链接消息]';
                 item.data.title = message.title;
                 item.data.description = message.description;

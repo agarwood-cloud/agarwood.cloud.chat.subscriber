@@ -11,10 +11,7 @@ export class ChatSidebarUserComponent implements OnInit {
   public lastMessage: LastMessage;
 
   @Input()
-  public set activeOpenid(openid: string) {
-    console.log('lastMessage', this.lastMessage);
-    console.log('set--activeOpenid', openid);
-  }
+  public activeOpenid: string;
 
   /**
    * constructor
@@ -23,6 +20,6 @@ export class ChatSidebarUserComponent implements OnInit {
   }
 
   public ngOnInit () {
-    console.log('lastMessage', this.lastMessage);
+    //console.log('lastMessage', this.lastMessage);
   }
 }

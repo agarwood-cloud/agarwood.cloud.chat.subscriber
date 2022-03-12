@@ -6,7 +6,11 @@
       <!--昵称备注-->
       <d-row>
         <d-col [dSpan]="2">
-          <d-avatar style="text-align: right" [gender]="'Female'" [name]="'组件头像'"></d-avatar>
+          <d-avatar style="text-align: right"
+                    [gender]="'Female'"
+                    [name]="activeUser.user.nickname || activeUser.user.openid"
+                    [imgSrc]="activeUser.user.headImgUrl"
+          ></d-avatar>
         </d-col>
         <d-col [dSpan]="16">
           <div class="chat-content-header-nickname">

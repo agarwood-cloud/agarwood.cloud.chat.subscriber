@@ -45,14 +45,14 @@ export class ChatSidebarAccordionComponent implements OnInit {
   }
 
   public menuToggle (event): void {
-    console.log('item click', event);
+    // console.log('item click', event);
   }
 
   public onClickUser (): void {
-    console.log('onClickUser');
+    // console.log('onClickUser');
   }
 
   public ngOnInit (): void {
-    console.log('ChatSidebarAccordionComponent');
+    // console.log('ChatSidebarAccordionComponent');
   }
 }

@@ -93,3 +93,13 @@ export interface LocationMessage {
   label: string;
   sender: 'user' | 'customer';
 }
+
+export interface ErrorMessage {
+  toUserName: string;
+  fromUserName: string;
+  createdAt: string;
+  msgType: 'error.message' | 'server.error.message';
+  errorCode: string;
+  content: string;
+  sender: 'user' | 'customer' | 'system';
+}
