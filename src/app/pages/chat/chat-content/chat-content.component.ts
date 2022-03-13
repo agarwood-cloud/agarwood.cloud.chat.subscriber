@@ -342,11 +342,11 @@ export class ChatContentComponent implements OnInit {
   /**
    * Listen socket event (such as: error message)
    */
-  public listenErrorMessage(): void {
+  public listenErrorMessage (): void {
     this.chatSocket.socket.on('error.message', (message: ErrorMessage) => {
       // console.log('error.message', message);
       this.toast.open({
-        value: [{ severity: 'error', summary: 'Error!',  content: message.content }]
+        value: [{ severity: 'error', summary: 'Error!', content: message.content }]
       });
     });
   }

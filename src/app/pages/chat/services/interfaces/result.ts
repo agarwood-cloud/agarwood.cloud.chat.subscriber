@@ -2,6 +2,7 @@ export interface ListResult<T> {
   list: T[];
   total: number;
   perPage: number;
+  pageCount: number;
   page: number;
   count: number;
 }

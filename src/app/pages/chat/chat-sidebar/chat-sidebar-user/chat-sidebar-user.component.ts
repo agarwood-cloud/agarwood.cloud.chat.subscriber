@@ -20,6 +20,6 @@ export class ChatSidebarUserComponent implements OnInit {
   }
 
   public ngOnInit () {
-    //console.log('lastMessage', this.lastMessage);
+    // console.log('lastMessage', this.lastMessage);
   }
 }

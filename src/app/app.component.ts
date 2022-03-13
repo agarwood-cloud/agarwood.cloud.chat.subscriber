@@ -16,12 +16,12 @@ if (typeof Worker !== 'undefined') {
   };
   worker.postMessage('hello');
 
-  Notification.requestPermission( (permission: NotificationPermission) => {
+  Notification.requestPermission((permission: NotificationPermission) => {
     // If the user accepts, let's create a notification
-    if (permission === "granted") {
-      worker.postMessage("hi new notification!")
+    if (permission === 'granted') {
+      worker.postMessage('hi new notification!');
     }
-  }).then(r => console.info(`permission = ${r}`))
+  }).then(r => console.info(`permission = ${r}`));
 } else {
   // Web Workers are not supported in this environment.
   // You should add a fallback so that your program still executes correctly.

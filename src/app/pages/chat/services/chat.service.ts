@@ -19,8 +19,13 @@ export class ChatService {
    *
    * @returns {Observable<Object>}
    */
-  public getChatList (): Observable<Object> {
-    return this.http.get('/user-center/official-account/v3/chat/chat-list');
+  public getChatList (page: number = 1, perPage: number = 20): Observable<Object> {
+    return this.http.get('/user-center/official-account/v3/chat/chat-list', {
+      params: {
+        page: page,
+        perPage: perPage
+      }
+    });
   }
 
   /**

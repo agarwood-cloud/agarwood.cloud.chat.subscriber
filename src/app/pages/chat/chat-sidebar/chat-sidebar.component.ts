@@ -76,6 +76,16 @@ export class ChatSidebarComponent implements OnInit, AfterViewInit {
   public activeOpenid: string;
 
   /**
+   * current page
+   */
+  public pageCurrent: number = 1;
+
+  /**
+   * has more data ?
+   */
+  public isLoadMore: boolean = true;
+
+  /**
    * initializes the ChatSidebarComponent
    *
    * @param chatSocket ChatSocketService
@@ -148,9 +158,16 @@ export class ChatSidebarComponent implements OnInit, AfterViewInit {
    *
    * @public
    */
-  public getChatList (): void {
-    this.chatService.getChatList().subscribe((chatList: Result<LastMessage>) => {
-      this.lastMessage = chatList.data;
+  public getChatList (page: number = 1, perPage: number = 20): void {
+    // 滚动到底部时，自动加载更多
+    this.chatService.getChatList(page, perPage).subscribe((chatList: Result<LastMessage>) => {
+      // 第一页必定要加载的
+      if (page === 1 || chatList.data.pageCount > page) {
+        console.log('chatList', chatList);
+        this.lastMessage = [...chatList.data.list];
+      } else {
+        this.isLoadMore = false;
+      }
     });
   }
 
@@ -222,7 +239,7 @@ export class ChatSidebarComponent implements OnInit, AfterViewInit {
                 item.data.title = message.title;
               }
               if (message.msgType === 'link.message') {
-               //  console.log('link.message:', message);
+                //  console.log('link.message:', message);
                 item.data.content = '[链接消息]';
                 item.data.title = message.title;
                 item.data.description = message.description;
@@ -308,5 +325,16 @@ export class ChatSidebarComponent implements OnInit, AfterViewInit {
     // 删除当前数组元素，并将被删除的值添加到数组开头
     message.unshift(message.splice(index, 1)[0]);
     return message;
+  }
+
+  /**
+   * load more chat message
+   */
+  public onloadMore (e: Event): void {
+    // 如果存在数据，则请求数据
+    if (this.isLoadMore) {
+      this.getChatList(this.pageCurrent++, 20);
+    }
+    this.pageCurrent++;
   }
 }

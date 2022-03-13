@@ -2,7 +2,7 @@
 
 addEventListener('message', ({ data }) => {
   const notification = new Notification('Hello from WebWorker', {
-    body: 'Hello from WebWorker',
+    body: 'Hello from WebWorker'
   });
 
   new Notification('Hi there!----');

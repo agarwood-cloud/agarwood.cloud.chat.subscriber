@@ -20,7 +20,6 @@ export class ChatSocketService {
 
   // init socket.io
   public constructor (private readonly http: HttpClient) {
-
     // init socket.io
     this.socketLogin(ChatSocketService.getFromUserName());
   }

@@ -1,5 +1,5 @@
 import { Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
-import { ChatSocketService } from './services/chat-socket.service';
+// import { ChatSocketService } from './services/chat-socket.service';
 import { ActiveUserService } from './services/active-user.service';
 
 @Component({
@@ -24,7 +24,7 @@ export class ChatComponent implements OnInit {
    * constructor
    */
   public constructor (
-      private readonly socket: ChatSocketService,
+      // private readonly socket: ChatSocketService,
       public activeUser: ActiveUserService
   ) {
     // Getting ScreenSize
@@ -62,7 +62,7 @@ export class ChatComponent implements OnInit {
    */
   @HostListener('window:load', ['$event'])
   public webNotifications (event?): void {
-     // todo 这里是加载完成要处理的
+    // todo 这里是加载完成要处理的
     // this.notification.createdOn
   }
 }

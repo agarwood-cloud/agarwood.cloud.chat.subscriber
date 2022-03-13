@@ -11,7 +11,13 @@
         聊天列表
       </ng-template>
       <ng-template dTabContent>
-        <div [style.height.px]="sidebarTodayChatContentHeight" style="overflow: auto">
+        <div
+            [style.height.px]="sidebarTodayChatContentHeight"
+            style="overflow: auto"
+            dLazyLoad
+            [enableLazyLoad]="true"
+            (loadMore)="onloadMore($event)"
+        >
           <app-chat-sidebar-user
               *ngFor="let item of lastMessage"
               [lastMessage]="item"

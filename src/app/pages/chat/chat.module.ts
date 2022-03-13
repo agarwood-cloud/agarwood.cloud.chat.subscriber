@@ -17,6 +17,7 @@ import { ChatService } from './services/chat.service';
 import { ActiveUserService } from './services/active-user.service';
 import { ChatContentSenderComponent } from './chat-content/chat-content-sender/chat-content-sender.component';
 import { ChatContentReceiverComponent } from './chat-content/chat-content-receiver/chat-content-receiver.component';
+import { LazyLoadModule } from 'ng-devui/utils';
 
 @NgModule({
   providers: [
@@ -46,7 +47,8 @@ import { ChatContentReceiverComponent } from './chat-content/chat-content-receiv
     SplitterModule,
     CardModule,
     TagsModule,
-    ImagePreviewModule
+    ImagePreviewModule,
+    LazyLoadModule
   ]
 })
 export class ChatModule { }
