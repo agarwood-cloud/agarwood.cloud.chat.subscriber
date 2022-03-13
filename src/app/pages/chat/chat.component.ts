@@ -62,9 +62,7 @@ export class ChatComponent implements OnInit {
    */
   @HostListener('window:load', ['$event'])
   public webNotifications (event?): void {
-    // Getting Permission
-    Notification.requestPermission().then((result) => {
-      //console.log('Getting Permission', result);
-    });
+     // todo 这里是加载完成要处理的
+    // this.notification.createdOn
   }
 }

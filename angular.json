@@ -40,7 +40,8 @@
               "node_modules/@devui-design/icons/icomoon/devui-icon.css"
             ],
             "scripts": [],
-            "baseHref": "/chat-subscriber/"
+            "baseHref": "/chat-subscriber/",
+            "webWorkerTsConfig": "tsconfig.worker.json"
           },
           "configurations": {
             "production": {
@@ -108,7 +109,8 @@
             "styles": [
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [],
+            "webWorkerTsConfig": "tsconfig.worker.json"
           }
         },
         "lint": {

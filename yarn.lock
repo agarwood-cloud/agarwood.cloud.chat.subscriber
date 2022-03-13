@@ -2061,6 +2061,13 @@ ajv@^8.0.0, ajv@^8.0.1, ajv@^8.8.0:
     require-from-string "^2.0.2"
     uri-js "^4.2.2"
 
+angular2-notifications@^12.0.0:
+  version "12.0.0"
+  resolved "https://registry.yarnpkg.com/angular2-notifications/-/angular2-notifications-12.0.0.tgz#2dfb0cec15b281286f33c78330aca47db970064a"
+  integrity sha512-d+AjyPum2II1nXxOwbBu2eW2XSoBXJtLy+1/YgkbKcVGTiwYxYCCUVrDF/u9vUTrBC078jz03MbrOw9V7E92ig==
+  dependencies:
+    tslib "^2.3.0"
+
 ansi-colors@4.1.1, ansi-colors@^4.1.1:
   version "4.1.1"
   resolved "https://registry.yarnpkg.com/ansi-colors/-/ansi-colors-4.1.1.tgz#cbb9ae256bf750af1eab344f229aa27fe94ba348"
