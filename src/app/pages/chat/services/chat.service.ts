@@ -60,8 +60,9 @@ export class ChatService {
   /**
    * Get User Info
    */
-  public getUser (): Observable<Object> {
-    return this.http.get('/user-center/official-account/v3/user');
+  public getUser (openid: string): Observable<Object> {
+    // todo 这里需要修改内容，增加参数
+    return this.http.get(`/user-center/official-account/v3/user/${openid}`);
   }
 
   /**

@@ -267,8 +267,15 @@ export class ChatSidebarComponent implements OnInit, AfterViewInit {
               return item.openid === message.fromUserName;
             }
           });
+
           if (filter.length === 0) {
-            this.chatService.getUser().subscribe((user: Result<User>) => {
+            let openid: string = '';
+            if (message.sender === 'customer') {
+               openid = message.toUserName;
+            } else {
+               openid = message.fromUserName;
+            }
+            this.chatService.getUser(openid).subscribe((user: Result<User>) => {
               let lastContent: string;
               if (message.msgType === 'text.message') {
                 lastContent = message.content;

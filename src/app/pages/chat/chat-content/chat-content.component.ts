@@ -273,7 +273,8 @@ export class ChatContentComponent implements OnInit {
             sender: message.sender,
             data: {},
             createdAt: message.createdAt,
-            isRead: this.activeUser.user.openid === openid,
+            // this.activeUser 可能不存在
+            isRead: this.activeUser?.user?.openid === openid,
             noReadNum: 0 // todo, 这里要计算未读消息数量
           };
 
