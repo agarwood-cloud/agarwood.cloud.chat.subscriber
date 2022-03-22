@@ -177,10 +177,8 @@ export class ChatSidebarComponent implements OnInit, AfterViewInit {
    * @param user
    */
   public selectUser (user: User): void {
-    // console.log('selectUser:', this.lastMessage);
     this.activeUser.clickUser(user);
     this.activeOpenid = user.openid;
-    // console.log('activeOpenid:', this.activeOpenid);
   }
 
   /**

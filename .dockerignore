@@ -1,0 +1,4 @@
+/.git
+.angular
+node_modules
+yarn-error.log

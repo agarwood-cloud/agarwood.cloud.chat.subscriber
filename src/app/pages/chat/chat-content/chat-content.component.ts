@@ -265,6 +265,11 @@ export class ChatContentComponent implements OnInit {
           const openid = message.sender === 'user' ? message.fromUserName : message.toUserName;
           const customerId = message.sender === 'user' ? message.toUserName : message.fromUserName;
 
+          // 如果不是当前用户，不处理
+          if(this.activeUser?.user?.openid !== openid) {
+            return;
+          }
+
           const content: ChatMessage = {
             id: message.id,
             openid: openid,
