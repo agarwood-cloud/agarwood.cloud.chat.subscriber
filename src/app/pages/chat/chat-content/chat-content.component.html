@@ -56,6 +56,19 @@
       <em class="icon-emoji"></em>
       <em class="icon-picture"></em>
       <em class="icon-marketplace"></em>
+      <span
+          dUpload
+          #dUpload="dUpload"
+          [enableDrop]="true"
+          [fileOptions]="fileOptions"
+          [uploadOptions]="uploadOptions"
+          [uploadedFiles]="uploadedFiles"
+          [fileUploaders]="fileUploader"
+          (successEvent)="onSuccess($event)"
+          (errorEvent)="onError($event)"
+      >
+        <em class="icon-cancel-forbidden"></em>
+      </span>
     </div>
     <div class="chat-content-bottom-textarea">
       <textarea

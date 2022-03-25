@@ -11,7 +11,7 @@ import { ChatToolbarComponent } from './chat-toolbar/chat-toolbar.component';
 import { ChatComponent } from './chat.component';
 import { ChatSocketService } from './services/chat-socket.service';
 import { SharedModule } from '../../@shared/shared.module';
-import { CardModule, ImagePreviewModule, SplitterModule, TagsModule } from 'ng-devui';
+import {CardModule, ImagePreviewModule, SplitterModule, TagsModule, UploadModule} from 'ng-devui';
 import { ChatLastDayPipe } from './services/chat-last-day.pipe';
 import { ChatService } from './services/chat.service';
 import { ActiveUserService } from './services/active-user.service';
@@ -39,16 +39,17 @@ import { LazyLoadModule } from 'ng-devui/utils';
   exports: [
     ChatComponent
   ],
-  imports: [
-    CommonModule,
-    ChatRoutingModule,
-    RelativeTimeModule,
-    SharedModule,
-    SplitterModule,
-    CardModule,
-    TagsModule,
-    ImagePreviewModule,
-    LazyLoadModule
-  ]
+    imports: [
+        CommonModule,
+        ChatRoutingModule,
+        RelativeTimeModule,
+        SharedModule,
+        SplitterModule,
+        CardModule,
+        TagsModule,
+        ImagePreviewModule,
+        LazyLoadModule,
+        UploadModule
+    ]
 })
 export class ChatModule { }

@@ -21,6 +21,7 @@ import {
   VoiceMessage
 } from '../services/interfaces/message';
 import { ChatService } from '../services/chat.service';
+import { FileUploader, IFileOptions, IUploadOptions } from 'ng-devui/upload';
 
 @Component({
   selector: 'app-chat-content',
@@ -82,6 +83,21 @@ export class ChatContentComponent implements OnInit {
    */
   public isScroll: boolean = false;
 
+  // upload file
+  public uploadedFiles: Array<Object> = [];
+  public fileUploader: Array<FileUploader> = [];
+  public isDropOver = false;
+  public uploadOptions: IUploadOptions = {
+    uri: '/user-center/official-account/v3/chat/upload-video',
+    maximumSize: 4,
+    authToken: `Bearer ${localStorage.getItem('token')}`,
+    checkSameName: false
+  };
+  public fileOptions: IFileOptions = {
+    accept: 'video/*',
+    multiple: false,
+  };
+
   /**
    * Get chatContentHeader DOM element
    */
@@ -131,8 +147,8 @@ export class ChatContentComponent implements OnInit {
   public constructor (
       private readonly chatSocket: ChatSocketService,
       private readonly toast: ToastService,
-      public activeUser: ActiveUserService = null,
-      private readonly chatService: ChatService
+      private readonly chatService: ChatService,
+      public activeUser: ActiveUserService = null
   ) {
   }
 
@@ -395,5 +411,43 @@ export class ChatContentComponent implements OnInit {
       // }
     }
     // console.log('loadMoreChatMessage', event);
+  }
+
+  public onSuccess(event): void {
+    // 多文件上传成功反馈
+    event.forEach(item => {
+      JSON.parse(item.response).data.forEach(data => {
+        this.chatSocket.sendVideoMessage(
+            this.activeUser.user.openid,
+            data.videoUrl,
+            data.mediaInfo.mediaId,
+            // todo 这里待增加参数描述
+            '',
+            '',
+            ''
+        );
+      });
+    })
+  }
+
+  /**
+   * When video upload error
+   *
+   *
+   * @param event
+   */
+  public onError(event): void {
+    if (typeof event === 'string') {
+      this.toast.open({
+        value: [{ severity: 'error', summary: 'Error!', content: event }]
+      });
+    }
+
+    if (typeof event === 'object') {
+      this.toast.open({
+        value: [{ severity: 'error', summary: 'Error!', content: JSON.parse(event.response).msg }]
+      });
+    }
+
   }
 }
